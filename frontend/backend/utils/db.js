@@ -1,17 +1,22 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
+const connectDb = async () => {
+    try {
+       
+        const DBurl= process.env.DBurl;
 
+        await mongoose.connect(DBurl, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            authSource: 'admin', 
+        });
 
-
-const connectDb =async () =>{
-    try{
-        await mongoose.connect("mongodb://127.0.0.1:27017/Project");
-        console.log("connection successfull to Database");
-    }
-    catch(error){
-        console.error("database connection failed");
-        process.exit(0);
+        console.log("Connection successful to Database");
+    } catch (error) {
+        console.error("Database connection failed:", error.message);
+        process.exit(1);
     }
 };
 
-module.exports=connectDb
+module.exports = connectDb;
