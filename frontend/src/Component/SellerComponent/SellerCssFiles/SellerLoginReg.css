@@ -1,0 +1,11 @@
+.container{
+    width: 75%;
+    
+
+}
+
+@media (min-width:500px) {
+    .container{
+        width: 50%}
+    
+}

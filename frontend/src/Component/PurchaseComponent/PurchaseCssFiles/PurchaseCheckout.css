@@ -1,0 +1,29 @@
+
+
+
+
+
+
+.container{
+    width: 100%;
+    
+
+}
+
+@media (min-width:500px) {
+    .container{
+        width: 50%}
+    
+}
+
+.margin{
+    margin-left: 25px;
+    
+
+}
+
+@media (min-width:500px) {
+    .margin{
+        margin-left: 40px;}
+    
+}

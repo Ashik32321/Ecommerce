@@ -1,0 +1,53 @@
+.img-fluid{
+    height:100px;
+        width: 120px;
+}
+@media (min-width:500px) {
+    .img-fluid{
+        height:150px;
+        width: 140px;}
+    
+}
+
+.container{
+    width: 100%;
+    
+
+}
+
+@media (min-width:500px) {
+    .container{
+        width: 75%}
+    
+}
+
+.custumbutton{
+  width: 140px;
+  height:40px;
+
+  border:0;
+  
+}
+
+@media (min-width:500px) {
+    .custumbutton{
+        width: 150px;
+        height:40px;
+      
+        border:0; }
+    
+}
+
+
+
+
+
+  @media (min-width:500px) {
+    .custom-textarea {
+        
+        overflow: hidden;
+      }
+    
+    
+}
+

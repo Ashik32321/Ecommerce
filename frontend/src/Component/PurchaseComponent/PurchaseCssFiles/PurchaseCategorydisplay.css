@@ -1,0 +1,49 @@
+.card{
+   
+    height: 220px;
+         width:120px;
+ }
+ 
+ @media (min-width:500px) {
+     .card{
+         height: 280px;
+    width:140px; }
+     
+ }
+ 
+ .img-fluid{
+     height: 100px;
+ 
+ }
+ 
+ @media (min-width:500px) {
+     .img-fluid{
+         height: 190px;
+    width:auto; 
+    }
+ }
+ 
+ .card-title{
+     font-size:small;
+ }
+    
+ @media (min-width:500px) {
+     .card-title{
+ 
+         font-size:medium;
+     
+    }
+ }
+ 
+ .card-text{
+     font-size:small;
+ }
+    
+ @media (min-width:500px) {
+     .card-text{
+ 
+         font-size:medium;
+     
+    }
+ }
+ 

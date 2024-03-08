@@ -1,0 +1,92 @@
+/* Addtocart.css - Add this CSS for center-aligning content */
+
+
+
+.emptyCartMessage {
+    text-align: center;
+  }
+  
+  
+  .emptyCartImage {
+    width: 150px;
+    height: 150px;
+    animation: bounce 1s infinite;
+  }
+  
+  
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  .table-bordered {
+    text-align: center;
+  }
+  
+  .quantity-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .card-text {
+    margin: 0;
+  }
+  
+  .text-danger {
+    margin: 0;
+  }
+  
+  
+  
+  
+  .btn-danger {
+    margin-top: 10px;
+  }
+  
+  .btn-warning {
+    margin-top: 10px;
+  }
+  
+  .small-text {
+    font-size: 7px;
+    font-weight: bold; /* Adjust the font size as needed */
+  }
+  
+  
+  
+  
+  .textfont{
+   
+    font-size:9px;
+    font-weight: bold;
+  
+  }
+  
+  @media (min-width:500px) {
+    .textfont{
+      font-size: 15px;
+      font-weight: bold;
+    
+  }
+  }
+  
+  
+  .setimage{
+   
+    height: 50px;
+      width: 50px;
+  
+  }
+  
+  @media (min-width:500px) {
+    .setimage{
+      height: 100px;
+      width: 100px;
+    
+  }
+  }

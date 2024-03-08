@@ -1,0 +1,30 @@
+.textfont{
+ 
+    font-size:9px;
+    font-weight: bold;
+  
+  }
+  
+  @media (min-width:500px) {
+    .textfont{
+      font-size: 15px;
+      font-weight: bold;
+    
+  }
+  }
+  
+  
+  .setimage1{
+   
+    height: 100px;
+      width: 100px;
+  
+  }
+  
+  @media (min-width:500px) {
+    .setimage1{
+      height: 140px;
+      width: 140px;
+    
+  }
+  }
