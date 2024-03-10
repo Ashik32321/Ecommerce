@@ -7,7 +7,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 function TopNavbar() {
-    const isButtonVisible = localStorage.getItem("userlogedin");
+    let  isButtonVisible =useState("false")
+    isButtonVisible = localStorage.getItem("userlogedin");
     const [searchQuery, setSearchQuery] = useState('');
     const nav = useNavigate()
 

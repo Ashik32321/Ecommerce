@@ -26,41 +26,49 @@ const SellerProduct= () => {
   const Productlength=SellerProducts.length
   localStorage.setItem("Productlength",Productlength)
 
-  const movetodisplay =(Mproduct)=>{
+  const moveToDisplay =(Mproduct)=>{
     nav("/sellerproductdisplay",{state:{Mproduct:Mproduct}})
 
 
   }
 
  
-
   return (
-
-
-   
-    <Container fluid className='mt-3 mb-5'>
-    <Row>
-      {SellerProducts.map((product) => (
-        <Col md={3} sm={4} xs={12} key={product.productId}>
-          <div className='product-card'>
-            <button onClick={() => movetodisplay(product)} className='border-0 bg-white'>
-              <div className='d-flex justify-content-center'>
-                {product.productimagePath && (
-                  <img src={product.productimagePath} alt={product.productname} className='product-image' />
-                )}
-              </div>
-              <div className='product-details'>
-                <h6 className='product-name text-primary fw-bold'>{product.productname}</h6>
-                <p className='fw-bold product-price'>Price: <span className='text-danger'>₹{product.productprice}</span></p>
-              </div>
-            </button>
-          </div>
-        </Col>
-      ))}
-    </Row>
-  </Container>
-    
-  
+    <div className='container-fluid mt-5 border shadow-sm p-5 mb-5 bg-white rounded'>
+      {SellerProducts.length === 0 ? (
+        <div className="emptyCartMessage">
+          <img
+            className="emptyCartImage"
+            src="./Images/emptyproduct.png"
+            alt=" empty products"
+          />
+          <p className='text-danger fw-bold'>Oops! you have not added any products</p><br />
+          
+        </div>
+      ) : (
+        <Container fluid className='mt-3 mb-5'>
+          <Row>
+            {SellerProducts.map((product) => (
+              <Col md={3} sm={4} xs={12} key={product.productId}>
+                <div className='product-card'>
+                  <button onClick={() => moveToDisplay(product)} className='border-0 bg-white'>
+                    <div className='d-flex justify-content-center'>
+                      {product.productimagePath && (
+                        <img src={product.productimagePath} alt={product.productname} className='product-image' />
+                      )}
+                    </div>
+                    <div className='product-details'>
+                      <h6 className='product-name text-primary fw-bold'>{product.productname}</h6>
+                      <p className='fw-bold product-price'>Price: <span className='text-danger'>₹{product.productprice}</span></p>
+                    </div>
+                  </button>
+                </div>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      )}
+    </div>
   );
 };
 
