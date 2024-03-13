@@ -7,7 +7,6 @@ router.post('/saveaddress', (req, res) => {
     Address.create(req.body)
 
         .then(user => {
-            console.log(user)
             res.json("success")
         }
         )

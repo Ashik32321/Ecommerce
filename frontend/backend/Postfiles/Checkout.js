@@ -1,13 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const stripe = require("stripe")("sk_test_51OcqX2SI1KcZYWZzYAXkOBBKbnPyXZyiyTEAVqYm88xfSK8ofZI6remM29RWlFc2b54lSL4XFVOgoJeujFMgVP2c00vDG3fcgl");
+require('dotenv').config();
+const StripeKey = process.env.StripeKey;
+const stripe = require("stripe")(StripeKey);
 
 
 router.post("/checkout", async (req, res) => {
     try {
         const {products} = req.body;
        
-        console.log('Request Body:', JSON.stringify(req.body)); // Log the request body for debugging
+       
 
         if (!products || products.length === 0) {
             throw new Error('Products array is empty or not provided.');

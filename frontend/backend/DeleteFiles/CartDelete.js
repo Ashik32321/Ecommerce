@@ -4,7 +4,7 @@ const CartProduct = require("../Models/CartModel");
 
 router.delete('/remove/:_id', async (req, res) => {
     try {
-        console.log(req.params._id);
+        
       const deletedItem = await CartProduct.findByIdAndDelete(req.params._id);
       if (!deletedItem) {
         return res.status(404).json({ error: 'Item not found' });

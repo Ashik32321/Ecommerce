@@ -14,10 +14,9 @@ router.post('/forgot-password', async (req, res) => {
   try {
     const otp = Math.floor(1000 + Math.random() * 9000).toString();
     const phone = req.body.phone;
-    console.log(phone)
+  
     
-    // Log the received request body for debugging
-    console.log('Received Request Body:', req.body);
+    
 
     // Check if the user is registered in the Project model
     const user = await Project.findOne({ userphone:phone });

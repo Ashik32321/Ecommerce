@@ -15,10 +15,9 @@ router.post('/sellerforgot-password', async (req, res) => {
   try {
     const otp = Math.floor(1000 + Math.random() * 9000).toString();
     const phone = req.body.phone;
-    console.log(phone)
+ 
     
-    // Log the received request body for debugging
-    console.log('Received Request Body:', req.body);
+   
 
     // Check if the user is registered in the Project model
     const user = await SellerModel.findOne({ sellerphone:phone });
@@ -37,7 +36,7 @@ router.post('/sellerforgot-password', async (req, res) => {
           to: `+91${phone}`,
         });
         
-        console.log('Twilio Response:', twilioResponse);
+     
         res.status(201).json({ message: 'Password reset successful' });
       } else {
         // Use await and handle errors for the create operation
@@ -48,8 +47,6 @@ router.post('/sellerforgot-password', async (req, res) => {
             from: TWILIO_PHONE_NUMBER,
             to: `+91${phone}`,
           });
-      
-          console.log('Twilio Response:', twilioResponse);
           res.status(201).json({ message: 'Password reset successful' });
         } catch (createError) {
           console.error('Error creating PasswordUpdate:', createError);

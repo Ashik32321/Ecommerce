@@ -1,7 +1,7 @@
 const express = require('express');
 const router =express.Router();
 const { OrderProduct } = require("../Models/OrderModel"); 
-const  SellerModel =require("../Models/SellerRegModel")
+
 
 router.put('/updateProcessed/:_id', async (req, res) => {
     try {

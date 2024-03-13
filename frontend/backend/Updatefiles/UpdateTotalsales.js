@@ -6,7 +6,7 @@ router.put('/updatedsalesvalue/:sellerphone', async (req, res) => {
     try {
         const { totalsales } = req.body;
         const sellerphone = req.params.sellerphone;
-        console.log(totalsales);
+   
         
 
         // Use findOne instead of find to get a single document

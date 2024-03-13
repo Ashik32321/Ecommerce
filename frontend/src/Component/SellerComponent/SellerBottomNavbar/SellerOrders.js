@@ -33,7 +33,7 @@ function SellerOrders() {
         <div className="emptyCartMessage ">
         <img
           className="emptyCartImage"
-          src="./Img/NoOrder.jpeg"
+          src="./Images/NoOrder.jpeg"
           alt="you haven't Ordered Yet"
         />
         <p className='text-danger fw-bold'> Sorry! You Have NoOrder...</p><br />
