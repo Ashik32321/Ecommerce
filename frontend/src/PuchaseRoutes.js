@@ -23,6 +23,7 @@ import PurchaseCartPayment from "./Component/PurchaseComponent/PurchaseBottomNav
 import PurchaseDeliveryAddress from "./Component/PurchaseComponent/PurchaseProducts/PurchaseDeliveryAddress"
 import PurchaseOrderDisplay from "./Component/PurchaseComponent/PurchaseBottomNavbar/PurchaseOrderDisplay"
 import SearchDisplay from './Component/PurchaseComponent/PurchaseTopNavbar/SearchDisplay'
+import PurchaseCancel from './Component/PurchaseComponent/PurchaseOtherComponent/PurchaseCancel'
 
 function PuchaseRoutes() {
   return (
@@ -50,6 +51,7 @@ function PuchaseRoutes() {
             <Route element={<PurchasePrivate><PurchaseDeliveryAddress/></PurchasePrivate>} path="/purchasedeliveryaddress"></Route>
             <Route element={<PurchasePrivate><PurchaseOrderDisplay/></PurchasePrivate>} path="/purchaseorderdisplay"></Route>
             <Route element={<SearchDisplay/>} path="/searchdisplay"></Route>
+            <Route element={<PurchasePrivate><PurchaseCancel/></PurchasePrivate>} path="cancel"></Route>
 
 
             

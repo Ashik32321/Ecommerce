@@ -1,21 +1,18 @@
-import React,{useState} from 'react'
+import React from 'react'
 
 import { Link} from 'react-router-dom'
 
 
 function SellerTopNavbar() {
   const isButtonVisible =localStorage.getItem("isSellerLoggedIn")
-  
 
-
-  var [sellerallow,setsellerallow]  =useState()
-
-  const logout  = () =>{
-    setsellerallow(sellerallow = false)
-    localStorage.setItem("isSellerLoggedIn",sellerallow)
+  const logout = () => {
+    localStorage.setItem("isSellerLoggedIn", false)
     alert("logged out successfuly")
     window.location.reload();
-  }
+}
+
+  
     
   return (
     <nav className='navbar bg-white'>

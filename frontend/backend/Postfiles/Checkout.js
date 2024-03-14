@@ -36,8 +36,8 @@ router.post("/checkout", async (req, res) => {
             payment_method_types: ["card"],
             line_items: lineItems,
             mode: "payment",
-            success_url: "http://localhost:3000/success", // Replace with your actual HTTPS success URL
-            cancel_url: "http://localhost:3000/cancel", // Replace with your actual HTTPS cancel URL
+            success_url: "https://minibasket.netlify.app/success", // Replace with your actual HTTPS success URL
+            cancel_url: "https://minibasket.netlify.app/cancel", // Replace with your actual HTTPS cancel URL
         });
 
         // Respond with the session ID
