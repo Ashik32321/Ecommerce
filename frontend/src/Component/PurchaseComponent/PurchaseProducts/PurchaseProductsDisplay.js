@@ -101,12 +101,10 @@ function PurchaseProductDisplay() {
                 <button onClick={() => movetobuy(location.state.Mproduct)} className='custumbutton me-1 mb-3 bg-warning rounded'>Buy</button>
                 {userlogedin === "true" && (
                   <>
-                    {isButtonVisible === "false" && (
-                      <button onClick={() => handleAddToCart(location.state.Mproduct)} className="custumbutton bg-warning rounded">Add to cart</button>
-                    )}
-                    {isButtonVisible === "true" && (
+                   
+                    {isButtonVisible === "true" ? (
                       <button onClick={() => nav("/purchaseaddtocart")} className="custumbutton bg-warning">Go to Cart</button>
-                    )}
+                    ):(<button onClick={() => handleAddToCart(location.state.Mproduct)} className="custumbutton bg-warning rounded">Add to cart</button>)}
                   </>
                 )}
               </p>

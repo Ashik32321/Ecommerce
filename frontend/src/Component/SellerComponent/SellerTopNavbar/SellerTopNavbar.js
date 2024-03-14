@@ -23,18 +23,16 @@ function SellerTopNavbar() {
       <div className='navbar-brand text-primary fw-bold'>
         <img src="./Images/ShopSellerlogo.png" alt="Mini basket" height="60" width="250" />
       </div>
+      {isButtonVisible === "true" ? (
+                  <button onClick={logout} className='btn btn-danger me-1'>
+                  Logout
+                </button>
+                    ) : (
+                      <Link to="/sellerlogin" className='btn btn-success me-1'>
+                      Login
+                    </Link>)}
 
-      {isButtonVisible === "false" && (
-        <Link to="/sellerlogin" className='btn btn-success me-1'>
-          Login
-        </Link>
-      )}
-
-      {isButtonVisible === "true" && (
-        <button onClick={logout} className='btn btn-danger me-1'>
-          Logout
-        </button>
-      )}
+     
     </div>
   </nav>
  

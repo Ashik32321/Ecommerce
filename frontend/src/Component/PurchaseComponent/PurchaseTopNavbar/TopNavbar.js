@@ -64,13 +64,15 @@ function TopNavbar() {
                     </div>
                 </Form>
 
-                {isButtonVisible === "false" && (
-                    <Link to="/purchaselogin" className='btn btn-success me-1 mt-2'>Login</Link>
-                )}
+               
 
-                {isButtonVisible === "true" && (
+                  {isButtonVisible === "true" ? (
                     <button onClick={logout} className='btn  btn-danger me-1 mt-2'>Logout</button>
-                )}
+                    ) : (
+                        <Link to="/purchaselogin" className='btn btn-success me-1 mt-2'>Login</Link>)}
+
+
+               
             </Container>
         </Navbar>
     );
