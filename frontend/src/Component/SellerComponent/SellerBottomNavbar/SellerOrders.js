@@ -10,7 +10,7 @@ function SellerOrders() {
   
 
   useEffect(() => {
-    axios.get('http://localhost:3001/getorderproducts')
+    axios.get('https://ecommerce-5-74uc.onrender.com/getorderproducts')
       .then((response) => setOrders(response.data))
       .catch((error) => console.error('Error fetching orders:', error));
   }, []);

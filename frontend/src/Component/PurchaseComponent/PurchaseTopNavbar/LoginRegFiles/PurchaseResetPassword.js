@@ -34,7 +34,7 @@ function PurchaseResetPassword() {
     
   
     
-        const resetResponse = await axios.put('http://localhost:3001/resetpassword', {
+        const resetResponse = await axios.put('https://ecommerce-5-74uc.onrender.com/resetpassword', {
           userphone: userphone,
           userpassword: value.userpassword,
         });

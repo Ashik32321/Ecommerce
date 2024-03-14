@@ -95,7 +95,7 @@ function PurchaseDeliveryAddress() {
     e.preventDefault();
 
     axios
-      .post('http://localhost:3001/saveaddress', { ...Address })
+      .post('https://ecommerce-5-74uc.onrender.com/saveaddress', { ...Address })
       .then((result) => {
         console.log(result);
         nav(-1);

@@ -10,7 +10,7 @@ function FootwearCategory() {
     const nav=useNavigate()
     useEffect(() => {
         // Fetch mobile products from the server
-        axios.get('http://localhost:3001/getfootwearproducts')
+        axios.get('https://ecommerce-5-74uc.onrender.com/getfootwearproducts')
           .then(response => setfootproducts(response.data))
           .catch(error => console.error(error));
       }, []);

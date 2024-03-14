@@ -15,7 +15,7 @@ const totalproducts =localStorage.getItem("Productlength")
 
 useEffect(() => {
   // Fetch all products from the server on component mount
-  axios.get('http://localhost:3001/getsellerprofile')
+  axios.get('https://ecommerce-5-74uc.onrender.com/getsellerprofile')
     .then((response) => setProfile(response.data))
     .catch((error) => console.error('Error fetching products:', error));
 }, []);

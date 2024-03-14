@@ -10,7 +10,7 @@ function ToyCategory() {
     const nav=useNavigate()
     useEffect(() => {
         // Fetch mobile products from the server
-        axios.get('http://localhost:3001/gettoyproducts')
+        axios.get('https://ecommerce-5-74uc.onrender.com/gettoyproducts')
           .then(response => settoyproducts(response.data))
           .catch(error => console.error(error));
       }, []);

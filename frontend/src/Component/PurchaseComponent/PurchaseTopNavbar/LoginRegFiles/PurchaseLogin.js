@@ -28,7 +28,7 @@ function PurchaseLogin() {
         e.preventDefault();
 
         try {
-            const result = await axios.post("http://localhost:3001/login", { ...Userdetails });
+            const result = await axios.post("https://ecommerce-5-74uc.onrender.com/login", { ...Userdetails });
             console.log(result);
 
             if (result.data.status === "success") {

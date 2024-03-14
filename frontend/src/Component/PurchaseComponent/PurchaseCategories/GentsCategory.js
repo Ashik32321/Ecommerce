@@ -11,7 +11,7 @@ function GentsCategory() {
     const nav=useNavigate()
     useEffect(() => {
         // Fetch mobile products from the server
-        axios.get('http://localhost:3001/getmensproducts')
+        axios.get('https://ecommerce-5-74uc.onrender.com/getmensproducts')
           .then(response => setMensproducts(response.data))
           .catch(error => console.error(error));
       }, []);

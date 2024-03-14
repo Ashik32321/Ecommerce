@@ -67,7 +67,7 @@ function PurchaseReg() {
             }
 
             // Axios post request
-            const result = await axios.post("http://localhost:3001/reg", { ...Userdetails });
+            const result = await axios.post("https://ecommerce-5-74uc.onrender.com/reg", { ...Userdetails });
 
             console.log(result); // Log the entire response for debugging
 

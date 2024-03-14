@@ -17,7 +17,7 @@ function PurchaseProductDisplay() {
   const [cartItems, setCartItems] = useState([]);
   useEffect(() => {
     axios
-      .get('http://localhost:3001/getcartproducts')
+      .get('https://ecommerce-5-74uc.onrender.com/getcartproducts')
       .then((response) => setCartItems(response.data))
       .catch((error) => console.error('Error fetching products:', error));
   }, []);
@@ -47,7 +47,7 @@ function PurchaseProductDisplay() {
 
   const handleAddToCart = async (product) => {
     try {
-      await axios.post('http://localhost:3001/addtocart', [product.productId,
+      await axios.post('https://ecommerce-5-74uc.onrender.com/addtocart', [product.productId,
                                                            product.productname, 
                                                            product.productimagePath, 
                                                            product.productprice, 

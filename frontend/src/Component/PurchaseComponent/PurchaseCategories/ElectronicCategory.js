@@ -10,7 +10,7 @@ function ElectronicCategory() {
     const nav=useNavigate()
     useEffect(() => {
         // Fetch mobile products from the server
-        axios.get('http://localhost:3001/getelectronicproducts')
+        axios.get('https://ecommerce-5-74uc.onrender.com/getelectronicproducts')
           .then(response => setElectonicproducts(response.data))
           .catch(error => console.error(error));
       }, []);

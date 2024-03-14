@@ -21,7 +21,7 @@ function SellerAddress() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post("http://localhost:3001/selleraddress", { ...value })
+    axios.post("https://ecommerce-5-74uc.onrender.com/selleraddress", { ...value })
       .then(result => {
         console.log(result)
         if (result.data === "added successfully") {

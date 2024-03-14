@@ -30,7 +30,7 @@ function SellerLogin() {
     };
 
     try {
-      const response = await axios.post("http://localhost:3001/sellerlogin", requestBody);
+      const response = await axios.post("https://ecommerce-5-74uc.onrender.com/sellerlogin", requestBody);
 
       if (response.data.status === "success") {
         isSellerLoggedIn = true

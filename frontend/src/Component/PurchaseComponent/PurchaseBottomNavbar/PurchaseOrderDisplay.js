@@ -15,7 +15,7 @@ function PurchaseOrderDisplay() {
     const [Deliveryaddress, setDeliveryaddress] = useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:3001/getdeliveryaddress')
+        axios.get('https://ecommerce-5-74uc.onrender.com/getdeliveryaddress')
             .then(response => {
                 setDeliveryaddress(response.data);
 

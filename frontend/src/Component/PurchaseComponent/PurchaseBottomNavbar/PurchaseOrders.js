@@ -13,7 +13,7 @@ const PurchaseOrders = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001/getorderproducts')
+      .get('https://ecommerce-5-74uc.onrender.com/getorderproducts')
       .then((response) => setOrders(response.data))
       .catch((error) => console.error('Error fetching orders:', error));
   }, []);

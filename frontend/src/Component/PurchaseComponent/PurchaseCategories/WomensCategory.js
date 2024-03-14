@@ -11,7 +11,7 @@ function WomenswearCategory() {
     const nav=useNavigate()
     useEffect(() => {
         // Fetch mobile products from the server
-        axios.get('http://localhost:3001/getwomensproducts')
+        axios.get('https://ecommerce-5-74uc.onrender.com/getwomensproducts')
           .then(response => setwomensproducts(response.data))
           .catch(error => console.error(error));
       }, []);

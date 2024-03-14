@@ -16,7 +16,7 @@ function SellerForgotPassword() {
   
     try {
       // Make an HTTP request to the server
-      const response = await axios.post('http://localhost:3001/sellerforgot-password', { phone: value.phone });
+      const response = await axios.post('https://ecommerce-5-74uc.onrender.com/sellerforgot-password', { phone: value.phone });
   
       if (response.status === 201) {
        
@@ -47,7 +47,7 @@ function SellerForgotPassword() {
     e.preventDefault();
   
     try {
-      const result = await axios.post("http://localhost:3001/sellervalidateotp", { ...value });
+      const result = await axios.post("https://ecommerce-5-74uc.onrender.com/sellervalidateotp", { ...value });
       console.log(result);
   
       if (result.data.status === "success") {
