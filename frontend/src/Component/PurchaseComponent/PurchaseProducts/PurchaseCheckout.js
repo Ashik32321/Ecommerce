@@ -79,7 +79,7 @@ localStorage.setItem('buyproducts', dataArrayString);
       <Col md={6} sm={6} xs={6}   >
         <p className=' border shadow-sm p-1 mb-5 bg-white rounded  mt-4 text-center'>
 
-      <img src={location.state.Mproduct.productimagePath} alt={location.state.Mproduct.productname}  className='img-fluid  mb-3'    /><br/>
+      <img src={location.state.Mproduct.productimagePath} alt={location.state.Mproduct.productname}  className='product-image  mb-3'    /><br/>
       <h6 >
       <button onClick={minus} className='btn btn-sm btn-secondary me-1 '>-</button>{value}<button onClick={plus} className='btn btn-sm btn-secondary ms-1 '>+</button></h6></p>
       </Col>

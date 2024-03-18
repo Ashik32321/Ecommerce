@@ -95,7 +95,7 @@ function PurchaseReg() {
     return (
         <>
             <Backbutton/>
-            <div className="container mt-3
+            <div className="login-container mt-3
          border border-dark shadow-sm p-1 mb-5 bg-white  ">
                 <div className="mt-5 mb-5">
                     <h2 className="text-primary text-center">Registration</h2>

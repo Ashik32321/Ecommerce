@@ -60,7 +60,7 @@ function SellerResetPassword() {
   
   return (
     <>
-    <div className='container border mt-5 p-5 border-dark bg-white'>
+    <div className='login-container border mt-5 p-5 border-dark bg-white'>
       <form className='d-flex justify-content-center' onSubmit={handleSubmit}>
         <div>
           <h4 className='text-primary text-center'>Reset Password</h4>

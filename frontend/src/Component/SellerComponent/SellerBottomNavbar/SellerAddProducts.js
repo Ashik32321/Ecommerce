@@ -65,9 +65,9 @@ function SellerAddProducts() {
   return (
     <>
     <BackButton></BackButton>
-    <div className='container border border-dark  mt-3 bg-white'>
+    <div className='login-container border border-dark  mt-3 bg-white'>
       <div className='mt-3 mb-3'>
-      <h2 className='text-primary text-center'>Add Product</h2>
+      <h4 className='text-primary text-center'>Add Product</h4>
       <div className='d-flex justify-content-center'>
       <form onSubmit={handleSubmit}>
           <label className='form-label'>Product Name:</label>

@@ -49,7 +49,7 @@ function PurchaseLogin() {
         <>
             <Backbutton />
 
-            <div className="container mt-5  border border-dark shadow-sm p-1 mb-5 bg-white   ">
+            <div className=" login-container mt-5  border border-dark shadow-sm p-1 mb-5 bg-white   ">
                 <div className="mt-5 mb-5">
                     <h2 className="text-primary text-center text-fluid">Login Page</h2>
                     <div className="d-flex justify-content-center ">

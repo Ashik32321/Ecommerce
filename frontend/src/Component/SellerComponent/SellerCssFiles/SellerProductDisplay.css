@@ -1,13 +1,3 @@
-.img-fluid{
-    height:100px;
-        width: 120px;
-}
-@media (min-width:500px) {
-    .img-fluid{
-        height:150px;
-        width: 140px;}
-    
-}
 
 .container{
     width: 100%;

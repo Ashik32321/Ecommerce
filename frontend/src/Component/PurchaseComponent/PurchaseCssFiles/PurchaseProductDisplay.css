@@ -1,13 +1,4 @@
-.img-fluid{
-    height:100px;
-        width: 120px;
-}
-@media (min-width:500px) {
-    .img-fluid{
-        height:150px;
-        width: 140px;}
-    
-}
+
 
 .container{
     width: 100%;
@@ -20,6 +11,13 @@
         width: 75%}
     
 }
+
+.product-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 150px; /* Set a maximum height for the image */
+   margin: 10px;
+  }
 
 .custumbutton{
   width: 140px;

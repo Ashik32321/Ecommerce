@@ -11,7 +11,7 @@ const PurchaseCategory = () => {
     <Container  className=" mt-3 w-100 bg-white">
       <Row>
         {/* Mobile Category */}
-        <Col md={2} sm={2} xs={3}>
+        <Col md={2} sm={2} xs={4}>
           <div className="category-item">
           <Link to="/mobilecategory" className="text-decoration-none custom-link">
             <img
@@ -27,7 +27,7 @@ const PurchaseCategory = () => {
         </Col>
 
         {/* Toy Category */}
-        <Col md={2} sm={2} xs={3}>
+        <Col md={2} sm={2} xs={4}>
           
           <div className="category-item">
           <Link to="/toycategory" className="text-decoration-none custom-link">
@@ -44,7 +44,7 @@ const PurchaseCategory = () => {
         </Col>
 
         {/* Footwear Category */}
-        <Col md={2} sm={2} xs={3}>
+        <Col md={2} sm={2} xs={4}>
           <div className="category-item">
           <Link to="/footwearcategory" className="text-decoration-none custom-link">
             <img
@@ -59,7 +59,7 @@ const PurchaseCategory = () => {
           </div>
         </Col>
 
-        <Col md={2} sm={2} xs={3}>
+        <Col md={2} sm={2} xs={4}>
           <div className="category-item">
           <Link to="/gentscategory" className="text-decoration-none custom-link">
             <img
@@ -74,7 +74,7 @@ const PurchaseCategory = () => {
           </div>
         </Col>
 
-        <Col md={2} sm={2} xs={3}>
+        <Col md={2} sm={2} xs={4}>
           <div className="category-item">
           <Link to="/womenscategory" className="text-decoration-none custom-link">
             <img
@@ -89,7 +89,7 @@ const PurchaseCategory = () => {
           </div>
         </Col>
 
-        <Col md={2} sm={2} xs={3}>
+        <Col md={2} sm={2} xs={4}>
           <div className="category-item">
           <Link to="/electroniccategory" className="text-decoration-none custom-link">
             <img

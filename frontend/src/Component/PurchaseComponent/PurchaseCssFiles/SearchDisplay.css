@@ -2,12 +2,7 @@
     text-align: center;
   }
   
-  .searchitemImage {
-    width: 150px;
-    height: 150px;
-    animation: bounce 1s infinite;
-  }
-  
+ 
   @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {
       transform: translateY(0);

@@ -37,8 +37,8 @@ const SearchDisplay = () => {
                         {storedDataArray.map((product) => (
 
 
-                            <div className='d-flex justify-content-center'>
-                                <Col md={5} sm={5} xs={12} className=' ms-1 border shadow-sm p-1 mb-5 bg-white rounded ' >
+                            <div className='d-flex justify-content-center '>
+                                <Col md={5} sm={5} xs={12} className=' ms-1 border shadow-sm p-3 mb-5 bg-white rounded ' >
 
                                     <div className='d-flex justify-content-center product-container'>
                                         <button onClick={() => movetobuy(product)} className='border-0 bg-white' >
@@ -47,7 +47,7 @@ const SearchDisplay = () => {
                                             <div >
                                                 {product.productimagePath && (
 
-                                                    <img src={product.productimagePath} alt={product.productname} className='img-fluid ' />
+                                                    <img src={product.productimagePath} alt={product.productname} className='product-image' />
 
                                                 )}
                                                 <div>

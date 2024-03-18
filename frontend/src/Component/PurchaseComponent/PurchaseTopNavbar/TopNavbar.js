@@ -5,6 +5,8 @@ import Form from 'react-bootstrap/Form';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
+import "../PurchaseCssFiles/PurchaseTopNavbar.css"
+
 
 function TopNavbar() {
     let  isButtonVisible =useState("false")
@@ -51,9 +53,9 @@ function TopNavbar() {
                 </Navbar.Brand>
 
                 <Form className="d-flex mt-2" onSubmit={handleSearch}>
-                    <div className='input-group me-3'>
+                    <div className='input-group me-1'>
                         <input
-                            className='form-control'
+                            className="searchinput"
                             type="text"
                             placeholder="Search items"
                             value={searchQuery}
@@ -67,9 +69,9 @@ function TopNavbar() {
                
 
                   {isButtonVisible === "true" ? (
-                    <button onClick={logout} className='btn  btn-danger me-1 mt-2'>Logout</button>
+                    <button onClick={logout} className='btn  btn-danger mt-2 lbtn'>Logout</button>
                     ) : (
-                        <Link to="/purchaselogin" className='btn btn-success me-1 mt-2'>Login</Link>)}
+                        <Link to="/purchaselogin" className='btn btn-success  mt-2 lbtn'>Login</Link>)}
 
 
                

@@ -38,7 +38,7 @@ const PurchaseAdds = () => {
       <Carousel activeIndex={index} onSelect={handleSelect} interval={2000}>
         {ads.map((ad, adIndex) => (
           <Carousel.Item key={adIndex}>
-            <img className="d-block w-100" src={ad.image} alt={ad.title} style={{height:"180px"}} />
+            <img className="d-block w-100 img-fluid" src={ad.image} alt={ad.title} />
             
           </Carousel.Item>
         ))}

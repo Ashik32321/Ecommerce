@@ -11,17 +11,9 @@
      
  }
  
- .img-fluid{
-     height: 100px;
+
  
- }
- 
- @media (min-width:500px) {
-     .img-fluid{
-         height: 190px;
-    width:auto; 
-    }
- }
+
  
  .card-title{
      font-size:small;

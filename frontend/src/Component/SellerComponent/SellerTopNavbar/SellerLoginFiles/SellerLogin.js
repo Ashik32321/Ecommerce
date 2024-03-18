@@ -54,7 +54,7 @@ function SellerLogin() {
   return (
     <>
     <BackButton></BackButton>
-    <div className="container border mt-5 border-dark  bg-white">
+    <div className="login-container border mt-5 border-dark  bg-white">
       <div className="mt-5 mb-5">
         <h2 className="text-primary text-center">Seller Login</h2>
         <div className="d-flex justify-content-center">

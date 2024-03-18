@@ -22,9 +22,13 @@ function PurchaseResetPassword() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (value.userpassword.length < 8) {
+      setError("Password should be at least 8 characters");
+      return;
+  }
   
     // Password confirmation check
-    if (value.userpassword !== value.usercpassword) {
+    else if (value.userpassword !== value.usercpassword) {
       setError('Passwords do not match.');
       return;
     }
@@ -55,7 +59,7 @@ function PurchaseResetPassword() {
   
   return (
     <>
-    <div className='container border mt-5 p-5 border-dark bg-white'>
+    <div className='login-container border mt-5 p-5 border-dark bg-white'>
       <form className='d-flex justify-content-center' onSubmit={handleSubmit}>
         <div>
           <h4 className='text-primary text-center'>Reset Password</h4>

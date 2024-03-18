@@ -78,7 +78,7 @@ const [value,setvalue]=useState({
   return (
     <>
     <BackButton></BackButton>
-    <div className='container border mt-3 border-dark bg-white'>
+    <div className='login-container border mt-3 border-dark bg-white'>
       <div className="mt-5 mb-5">
         <h2 className='text-center text-primary'>Seller Register</h2>
         <div className='d-flex justify-content-center'>

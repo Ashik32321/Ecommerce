@@ -1,0 +1,11 @@
+.logosize{
+    width: 180px;
+    height: 60;
+}
+
+@media (min-width:500px) {
+    .logosize{
+        width: 200px;
+    height: 60;}
+    
+}

@@ -67,7 +67,7 @@ function SellerForgotPassword() {
   return (
     <>
     <BackButton/>
-    <div className='container border mt-5 p-5 border-dark bg-white'>
+    <div className='login-container border mt-5 p-5 border-dark bg-white'>
       <div className='d-flex justify-content-center'>
         <form onSubmit={handleSubmit}>
           <label htmlFor='phone' className='foem-label'>

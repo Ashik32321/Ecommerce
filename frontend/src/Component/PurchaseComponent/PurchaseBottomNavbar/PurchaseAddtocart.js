@@ -100,7 +100,7 @@ localStorage.setItem('products', dataArrayString);
                   <td>
                     <p className='text-center'>
                       {cartItem.productimagePath && (
-                        <img src={cartItem.productimagePath} alt={cartItem.productname} className=' mb-2 rounded-circle setimage' />
+                        <img src={cartItem.productimagePath} alt={cartItem.productname} className=' mb-2 setimage' />
                       )}<br />
                       <button onClick={() => handleDelete(cartItem._id)} className='btn btn-sm btn-danger bg-danger textfont'>Remove</button>
                     </p>
