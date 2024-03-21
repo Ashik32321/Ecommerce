@@ -12,7 +12,7 @@ const PurchaseProducts = () => {
 
   useEffect(() => {
     // Fetch all products from the server on component mount
-    axios.get('http://localhost:3001/getproducts')
+    axios.get('https://ecommerce-5-74uc.onrender.com/getproducts')
       .then((response) => setProducts(response.data))
       .catch((error) => console.error('Error fetching products:', error));
   }, []);
@@ -22,7 +22,7 @@ const PurchaseProducts = () => {
   };
 
   return (
-    <Container fluid className='mt-3 mb-5 p-4'>
+    <Container fluid className='mt-3 mb-5'>
       <Row>
         {products.map((product) => (
           <Col md={3} sm={4} xs={6} key={product.productId}>
