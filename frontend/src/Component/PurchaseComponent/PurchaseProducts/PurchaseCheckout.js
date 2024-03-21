@@ -116,7 +116,7 @@ localStorage.setItem('buyproducts', dataArrayString);
           <td className='text-success text-center'>₹{total}</td>
         </tr>
         <tr>
-          <td colSpan={2} className='text-center '><button className='btn  bg-warning btn-sm '  onClick={() =>nav("/purchasebuypayment")}>Checkout</button></td>
+          <td colSpan={2} className='text-center '><button className='btn  btn-primary bg-primary text-white btn-sm '  onClick={() =>nav("/purchasebuypayment")}>Checkout</button></td>
         </tr>
       </table>
       </Col>

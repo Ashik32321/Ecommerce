@@ -24,6 +24,7 @@ import PurchaseDeliveryAddress from "./Component/PurchaseComponent/PurchaseProdu
 import PurchaseOrderDisplay from "./Component/PurchaseComponent/PurchaseBottomNavbar/PurchaseOrderDisplay"
 import SearchDisplay from './Component/PurchaseComponent/PurchaseTopNavbar/SearchDisplay'
 import PurchaseCancel from './Component/PurchaseComponent/PurchaseOtherComponent/PurchaseCancel'
+import ContactPage from './Component/OtherComponent/ContactPage'
 
 function PuchaseRoutes() {
   return (
@@ -52,6 +53,7 @@ function PuchaseRoutes() {
             <Route element={<PurchasePrivate><PurchaseOrderDisplay/></PurchasePrivate>} path="/purchaseorderdisplay"></Route>
             <Route element={<SearchDisplay/>} path="/searchdisplay"></Route>
             <Route element={<PurchasePrivate><PurchaseCancel/></PurchasePrivate>} path="cancel"></Route>
+            <Route element={<ContactPage/>} path="/contactpage"></Route>
 
 
             

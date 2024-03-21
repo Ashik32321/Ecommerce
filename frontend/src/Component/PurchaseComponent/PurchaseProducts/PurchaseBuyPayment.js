@@ -181,7 +181,7 @@ const PurchaseBuyPayment = () => {
         Cash on Delivery
       </label>            <br/>
         <p className='text-center'>
-        <button className='btn btn-warning'   onClick={makePayment} >Make Payment</button></p>
+        <button className='btn btn-primary'   onClick={makePayment} >Make Payment</button></p>
      
       </form>
       </div>

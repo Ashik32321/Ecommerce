@@ -28,3 +28,17 @@
     
   }
   }
+  .margin2{
+    margin-top: 100px;
+   
+    
+}
+   
+@media (min-width:500px) {
+    .margin2{
+
+       margin-top: 100px;
+       
+    
+   }
+}

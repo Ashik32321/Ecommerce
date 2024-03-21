@@ -46,7 +46,7 @@ function TopNavbar() {
 
 
     return (
-        <Navbar expand="lg" className="bg-white">
+        <Navbar fixed="top" expand="lg" className="bg-white">
             <Container fluid className='ms-3'>
                 <Navbar.Brand className='text-primary fw-bold'>
                     <img src="./Images/Shoplogo.png" height="60" width="200" alt='shoplogo' />

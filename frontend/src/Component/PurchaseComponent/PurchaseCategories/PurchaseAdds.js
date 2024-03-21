@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Carousel} from 'react-bootstrap';
+import "../PurchaseCssFiles/PurchaseAdd.css"
 
 
 const ads = [
@@ -38,7 +39,7 @@ const PurchaseAdds = () => {
       <Carousel activeIndex={index} onSelect={handleSelect} interval={2000}>
         {ads.map((ad, adIndex) => (
           <Carousel.Item key={adIndex}>
-            <img className="d-block w-100 img-fluid" src={ad.image} alt={ad.title} />
+            <img className="d-block w-100 img-fluid  adimage" src={ad.image} alt={ad.title} />
             
           </Carousel.Item>
         ))}

@@ -1,10 +1,14 @@
 import React from 'react';
 import '../PurchaseCssFiles/PurchaseFooter.css'; // Import CSS file
+import ContactPage from '../../OtherComponent/ContactPage';
 
 function PurchaseFooter() {
   return (
-    <div className='container-fluid bg-white mb-5 footertextsize '>
-      <table className='text-center bg-white text-black w-100'>
+    <>
+    <ContactPage/>
+    <div className='container-fluid bg-white mb-5 text-primary footertextsize fw-bold '>
+      
+      <table className='text-center bg-white  w-100'>
         <tr>
           <td className='text-start'>
             <p>Developed By</p>
@@ -28,6 +32,7 @@ function PurchaseFooter() {
       </table>
       <p className='text-center'>All Rights Reserved</p>
     </div>
+    </>
   );
 }
 

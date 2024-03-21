@@ -1,50 +1,62 @@
-/* ProductList.css */
-
 .product-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  
-    background-color: #fff;
-    transition: transform 0.3s ease-in-out;
-    width: 270px;
-    height:300px; 
-    margin: 0 auto;/* Set a fixed width for the product card */
-  }
-
-  @media (min-width:500px) {
-    .product-card{
-       
-        width: 250px;}
-    
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 1rem;
+  background-color: #fff;
+  transition: transform 0.3s ease-in-out;
+  width: 250px; /* Set a fixed width for the product card */
+  height: 300px; /* Set a fixed height for the product card */
 }
-  
-  .product-card:hover {
-    transform: scale(1.05);
+
+@media (max-width: 767px) {
+  .product-card {
+    width: 100%; /* Full width on mobile */
+    height: 240px; /* Set a fixed height for the product card on mobile */
+    margin-bottom: 20px; /* Adjust margin for spacing */
   }
-  
-  .product-image {
-    max-width: 100%;
-    height: auto;
-    max-height: 150px; /* Set a maximum height for the image */
-   margin: 10px;
-  }
-  
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 70%; /* Set a maximum height for the image */
+  margin: 10px;
+}
+
+.product-details {
+  flex-grow: 1; /* Take up remaining space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+@media (max-width: 767px) {
   .product-details {
-    padding: 1rem;
-    text-align: center;
+   font-size: 9px;/* 2 products in a row for mobile */
   }
+}
+.product-name {
+  font-size: 1.2rem;
+  color: #333;
   
+  margin-bottom: 0.5rem;
+}
+@media (max-width: 767px) {
   .product-name {
-    font-size: 1.2rem;
-    color: #333;
+   font-size: 12px;/* 2 products in a row for mobile */
   }
-  
-  .product-price {
-    font-weight: bold;
-    color: #dc3545;
-    margin-top: 0.5rem;
-  }
-  
+}
+
+.product-price {
+  font-weight: bold;
+  color: #dc3545;
+  margin-bottom: 10px;
+
+}

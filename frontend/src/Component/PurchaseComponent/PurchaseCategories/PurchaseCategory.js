@@ -8,7 +8,7 @@ import "../PurchaseCssFiles/Purchasecategory.css";
 
 const PurchaseCategory = () => {
   return (
-    <Container  className=" mt-3 w-100 bg-white">
+    <Container  className="w-100 bg-white margin1">
       <Row>
         {/* Mobile Category */}
         <Col md={2} sm={2} xs={4}>

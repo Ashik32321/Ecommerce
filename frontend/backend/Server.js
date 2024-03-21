@@ -38,11 +38,13 @@ const SellerForgot=require("./Postfiles/SellerForgotPassword")
 const sellerresetpassword=require("./Updatefiles/SellerResetPassword")
 const updateorder =require("./Updatefiles/updateOrders") 
 const updatetotalsales =require("./Updatefiles/UpdateTotalsales")
+const contact =require("./Postfiles/Contact")
 
 
 const app = express();
 app.use(cors())
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -70,6 +72,7 @@ app.use(Checkout);
 app.use(Orderdetail);
 app.use(password)
 app.use(SellerForgot)
+app.use(contact)
 
 
 app.use(getproduct);

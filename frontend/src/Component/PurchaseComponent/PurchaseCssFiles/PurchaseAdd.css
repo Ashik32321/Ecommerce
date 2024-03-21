@@ -1,0 +1,9 @@
+.adimage{
+    height:100px;
+}
+
+@media (min-width:500px) {
+    .adimage{
+        height:auto}
+    
+}

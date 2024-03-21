@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import { Container, Row, Col } from 'react-bootstrap';
-import "../SellerCssFiles/SellerProduct.css"
+
 import { useNavigate } from 'react-router-dom';
 
 
@@ -14,7 +14,7 @@ const SellerProduct= () => {
 
 
   useEffect(() => {
-    axios.get('https://ecommerce-5-74uc.onrender.com/getproducts')
+    axios.get('http://localhost:3001/getproducts')
       .then((response) => setProducts(response.data))
       .catch((error) => console.error('Error fetching products:', error));
   }, []);

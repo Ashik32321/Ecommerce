@@ -16,7 +16,7 @@ function SellerTopNavbar() {
   
     
   return (
-    <nav className='navbar bg-white'>
+    <nav className='navbar bg-white fixed-top'>
     <div className='container-fluid ms-3 w-100'>
       <div className='navbar-brand text-primary fw-bold'>
         <img src="./Images/ShopSellerlogo.jpg" alt="Mini basket" className='logosize' />

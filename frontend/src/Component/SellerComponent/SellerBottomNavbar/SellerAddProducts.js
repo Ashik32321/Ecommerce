@@ -49,7 +49,7 @@ function SellerAddProducts() {
     formData.append('isdelivered',product.isdelivered)
 
     try {
-      await axios.post('https://ecommerce-5-74uc.onrender.com/addproducts', formData, {
+      await axios.post('http://localhost:3001/addproducts', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },

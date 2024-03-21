@@ -28,7 +28,7 @@ const sellerId=localStorage.getItem("sellerId")
 return (
 
 
-  <Container fluid  className=' mt-2 border shadow-sm p-1 mb-5 bg-white rounded p-3'>
+  <Container fluid   className=' margin2 border shadow-sm p-1 mb-5 bg-white rounded p-3'>
 
 
 {SellerProfiles.map((product) => (
