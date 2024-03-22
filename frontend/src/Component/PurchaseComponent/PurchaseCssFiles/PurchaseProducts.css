@@ -4,11 +4,13 @@
   align-items: center;
   border: 1px solid #ddd;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin: 1rem;
+  
   background-color: #fff;
   transition: transform 0.3s ease-in-out;
   width: 250px; /* Set a fixed width for the product card */
-  height: 300px; /* Set a fixed height for the product card */
+  height: 300px;
+  margin: 0 auto;
+  margin-bottom: 1rem; /* Set a fixed height for the product card */
 }
 
 @media (max-width: 767px) {

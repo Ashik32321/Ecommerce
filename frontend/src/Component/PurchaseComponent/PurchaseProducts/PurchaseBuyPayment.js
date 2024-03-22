@@ -13,7 +13,7 @@ const PurchaseBuyPayment = () => {
 
   const { SellerID,productname, productimagePath,productprice} = storedDataArray;
   console.log(SellerID)
-  const totalprice = localStorage.getItem("totalprice");
+  
   const quantity = localStorage.getItem("quantity");
 
   const [Deliveryaddress, setDeliveryaddress] = useState([]);
@@ -69,14 +69,14 @@ const PurchaseBuyPayment = () => {
 
       alert('Payment successful with Cash on Delivery!');
       nav("/success");
-    } else if (paymentOption === 'debitCard') {
+    } else if (paymentOption === 'DebitCard') {
       try {
         const stripe = await loadStripe("pk_test_51OcqX2SI1KcZYWZz4HtvKCIyK2BvfJ1edIB2cry3wWAkO4aNcdhHja8qPFnNJLBVQ0xECMahM1su42GJTV2byjGZ00HLO7kDdt");
         const body = {
           products: [{
             "productname": productname,
             "productimagePath": productimagePath,
-            "productprice": totalprice,
+            "productprice": productprice,
             "productquantity": quantity
           }]
         };
@@ -166,8 +166,8 @@ const PurchaseBuyPayment = () => {
         <input
           type="radio"
           name="paymentOption"
-          value="debitCard"
-          onChange={() => handlePaymentOptionChange('debitCard')}
+          value="DebitCard"
+          onChange={() => handlePaymentOptionChange('DebitCard')}
         />
         Debit Card
       </label><br/>

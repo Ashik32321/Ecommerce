@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import "../../SellerCssFiles/SellerLoginReg.css"
+import "./CssFiles/SellerLoginReg.css"
 
 function SellerResetPassword() {
   const [value, setValue] = useState({

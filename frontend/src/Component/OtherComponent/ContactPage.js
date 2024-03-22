@@ -1,49 +1,52 @@
 // src/App.js
 
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useRef } from 'react';
+import emailjs from '@emailjs/browser';
+import BackButton from './BackButton';
 
 function ContactPage() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [problem, setProblem] = useState('');
-  const [message, setMessage] = useState('');
+  const form = useRef();
 
-  const handleSubmit = async (e) => {
+  const sendEmail = (e) => {
     e.preventDefault();
 
-    try {
-      await axios.post('http://localhost:3001/contact', { name, email, problem });
-      setMessage('Your problem has been submitted successfully. We will get back to you soon.');
-      setName('');
-      setEmail('');
-      setProblem('');
-    } catch (error) {
-      console.error('Error submitting problem:', error);
-      setMessage('Failed to submit the problem. Please try again later.');
-    }
+    emailjs
+      .sendForm('service_fbjj7bi', 'template_2j2eepg', form.current, {
+        publicKey: 'uBqhTYC0dsaO6BW6B',
+      })
+      .then(
+        () => {
+          console.log('Your Issue have been sent ');
+        },
+        (error) => {
+          console.log('Failed to send issue', error.text);
+        },
+      );
   };
 
+ 
+
   return (
-    <div className='container-fluid bg-white'>
-      <h6 className='text-primary'><u>Contact Us</u></h6>
-      <form onSubmit={handleSubmit} className='p-3'>
-        <div>
-          <label className='form-label'>Name</label><br/>
-          <input className='form-input' type="text" value={name} onChange={(e) => setName(e.target.value)} required />
-        </div>
-        <div>
-          <label className='form-label'>Email:</label><br/>
-          <input className='form-input' type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </div>
-        <div>
-          <label className='form-label'>Problem:</label><br/>
-          <textarea  className='form-input' value={problem} onChange={(e) => setProblem(e.target.value)} required />
-        </div>
-        <button type="submit" className='btn btn-primary '>Submit</button>
-      </form>
-      {message && <p>{message}</p>}
+    <>
+    <BackButton/>
+    <div className='login-container border border-dark  mt-3 bg-white p-3'>
+      
+      <div className='d-flex justify-content-center'>
+      <form ref={form} onSubmit={sendEmail} className='p-3'>
+        <h5 className='text-primary text-center'>Contact us</h5>
+      <label className='form-label'>Name</label><br/>
+      <input type="text" name="Name" /><br/>
+      <label className='form-label'>Phone</label><br/>
+      <input type="tel" name="Phone" /><br/>
+      <label className='form-label'>Problem</label><br/>
+      <textarea name="Problem" /><br/>
+      <input type="submit" value="Submit" className='btn btn-primary w-100'/>
+    </form>
+      
+      
+      </div>
     </div>
+    </>
   );
 }
 

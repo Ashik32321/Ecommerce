@@ -1,0 +1,53 @@
+/* Base style for the floating button */
+.floating-button {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hover effect for the button */
+.floating-button:hover {
+    background-color: #0056b3;
+}
+
+/* Position - Bottom Right */
+.floating-button-bottom-right {
+    bottom: 20px;
+    right: 20px;
+}
+
+/* Position - Bottom Left */
+.floating-button-bottom-left {
+    bottom: 20px;
+    left: 20px;
+}
+
+/* Position - Top Right */
+.floating-button-top-right {
+    top: 20px;
+    right: 20px;
+}
+
+/* Position - Top Left */
+.floating-button-top-left {
+    top: 20px;
+    left: 20px;
+}
+
+/* Adjust position for mobile view (320px width) */
+@media screen and (max-width: 320px) {
+    .floating-button {
+        top: 20px; /* Adjust as needed */
+        right: 20px; /* Adjust as needed */
+    }
+}

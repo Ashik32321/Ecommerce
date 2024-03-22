@@ -8,6 +8,8 @@ import SellerFooter from './SellerFooter'
 
 
 
+
+
 function SellerHome() {
   const isButtonVisible =localStorage.getItem("isSellerLoggedIn")
   return (
@@ -20,6 +22,7 @@ function SellerHome() {
           <SellerProfile/>
          <SellerProduct/>
          <SellerFooter/>
+         
          </div>
       ) }
         

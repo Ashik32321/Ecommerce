@@ -6,6 +6,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import "../PurchaseCssFiles/PurchaseTopNavbar.css"
+import FlottingButton from "../PurchaseOtherComponent/FlottingButton";
+import '../PurchaseCssFiles/FlottingButton.css';
 
 
 function TopNavbar() {
@@ -69,7 +71,10 @@ function TopNavbar() {
                
 
                   {isButtonVisible === "true" ? (
+                    <>
                     <button onClick={logout} className='btn  btn-danger mt-2 lbtn'>Logout</button>
+                    <FlottingButton position="floating-button-bottom-right"/>
+                    </>
                     ) : (
                         <Link to="/purchaselogin" className='btn btn-success  mt-2 lbtn'>Login</Link>)}
 

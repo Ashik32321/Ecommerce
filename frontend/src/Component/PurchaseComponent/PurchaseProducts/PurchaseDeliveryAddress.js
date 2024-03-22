@@ -6,6 +6,7 @@ import BackButton from "../../OtherComponent/BackButton"
 
 function PurchaseDeliveryAddress() {
   const userId = localStorage.getItem('userId');
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [Address, setAddress] = useState({
     username: '',
     userphone: '',
@@ -98,6 +99,7 @@ function PurchaseDeliveryAddress() {
       .post('https://ecommerce-5-74uc.onrender.com/saveaddress', { ...Address })
       .then((result) => {
         console.log(result);
+        setIsSubmitted(true);
         nav(-1);
       })
       .catch((err) => {
@@ -264,9 +266,9 @@ function PurchaseDeliveryAddress() {
               </td>
             </tr>
             <tr>
-              <td colSpan='2'>
-                <button className='btn btn-primary w-100'>Add</button>
-              </td>
+            <td colSpan='2'>
+              <button className='btn btn-primary w-100' disabled={isSubmitted}>Add</button>
+            </td>
             </tr>
           </table>
         </form>

@@ -55,7 +55,7 @@ function SellerOrders() {
                     <Col md={6} sm={6} xs={6}>
                       <p className='text-center'>
                         {product.productimagePath && (
-                          <img src={product.productimagePath} alt={product.productname} className='img-fluid rounded-circle' />
+                          <img src={product.productimagePath} alt={product.productname} className='order-image' />
                         )}
                       </p>
                     </Col>

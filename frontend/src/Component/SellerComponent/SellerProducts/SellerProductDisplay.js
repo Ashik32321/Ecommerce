@@ -65,7 +65,7 @@ function SellerProductDisplay() {
         <Row className='mb-5'>
         <Col md={6} sm={12} xs={12}  >
                 <p className='text-center border shadow-sm p-3 mb-5 bg-white rounded  '>
-                <img  src={location.state.Mproduct.productimagePath} alt={location.state.Mproduct.productname} className='img-fluid '></img>
+                <img  src={location.state.Mproduct.productimagePath} alt={location.state.Mproduct.productname} className='order-image '></img>
                 
                 <h6  >Price: <span className='text-danger fw-bold'>₹{location.state.Mproduct.productprice}</span></h6>
                 </p>

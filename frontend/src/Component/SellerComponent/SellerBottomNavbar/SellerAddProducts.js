@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import "../SellerCssFiles/SellerLoginReg.css"
 import { useNavigate } from 'react-router-dom';
 import BackButton from '../../OtherComponent/BackButton';
 

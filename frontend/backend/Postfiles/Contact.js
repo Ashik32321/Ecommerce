@@ -10,7 +10,7 @@ const password = process.env.password;
 const supportEmail = process.env.supportEmail;
 
 router.post('/contact', (req, res) => {
-    const { name, email, problem } = req.body;
+    const { name, phone, problem } = req.body;
   
     // Create a transporter object using SMTP transport
     const transporter = nodemailer.createTransport({
@@ -26,7 +26,7 @@ router.post('/contact', (req, res) => {
       from: email, // replace with your email
       to: supportEmail, // replace with your support email
       subject: 'Customer Problem',
-      text: `Name: ${name}\nEmail: ${email}\nProblem: ${problem}`
+      text: `Name: ${name}\nPhone: ${phone}\nProblem: ${problem}`
     };
   
     // Send email

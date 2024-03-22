@@ -38,7 +38,7 @@ const SellerForgot=require("./Postfiles/SellerForgotPassword")
 const sellerresetpassword=require("./Updatefiles/SellerResetPassword")
 const updateorder =require("./Updatefiles/updateOrders") 
 const updatetotalsales =require("./Updatefiles/UpdateTotalsales")
-const contact =require("./Postfiles/Contact")
+
 
 
 const app = express();
@@ -72,7 +72,7 @@ app.use(Checkout);
 app.use(Orderdetail);
 app.use(password)
 app.use(SellerForgot)
-app.use(contact)
+
 
 
 app.use(getproduct);

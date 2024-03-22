@@ -1,29 +1,20 @@
-.footertextsize{
-  font-size: 6px; /* Example font size */
+.footer-custom {
+  background-color: white; /* Light gray background, you can adjust the color */
+  border-top: 1px solid #e7e7e7; /* Adds a top border */
 }
 
-
-@media (min-width:500px) {
-  .footertextsize{
-    font-size: 15px;}
-  
+.footer-custom h5 {
+  color: #333; /* Dark text color for headings */
 }
 
+.footer-custom p {
+  color: #666; /* Lighter text color for content */
+}
 
-  
-    /* Adjust layout for smaller screens */
-    .text-start,
-    .text-end {
-     
-      text-align: center;
-      margin-bottom: 20px; /* Example margin */
-    }
-  
-    /* Adjust width of table cells for smaller screens */
-    td {
-     
-    
-      text-align: center;
-    }
-  
-  
+.text-decoration-none {
+  text-decoration: none; /* Removes underline from links */
+}
+
+.text-decoration-none:hover {
+  color: #007bff; /* Change color on hover */
+}

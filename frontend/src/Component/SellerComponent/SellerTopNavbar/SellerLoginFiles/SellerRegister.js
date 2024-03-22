@@ -4,7 +4,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import axios from 'axios';
 import BackButton from "../../../OtherComponent/BackButton";
 import { UseSellerRegistration } from './UseSellerRegistration';
-import "../../SellerCssFiles/SellerLoginReg.css"
+import "./CssFiles/SellerLoginReg.css"
 
 function SellerRegister() {
   const [sellerDetails, handleSellerDetails ] = UseSellerRegistration({

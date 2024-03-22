@@ -50,7 +50,7 @@ function PurchaseOrderDisplay() {
                                 <img
                                   src={product.productimagePath}
                                   alt={product.productname}
-                                  className='img-fluid'
+                                  className='order-image'
                                 />
                               )}
                             </div>

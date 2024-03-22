@@ -12,28 +12,30 @@ function PurchaseProductDisplay() {
   const productId = location.state.Mproduct ? location.state.Mproduct.productId : null;
 
   const userlogedin = localStorage.getItem("userlogedin");
-  const [cartItems, setCartItems] = useState([]);
-  useEffect(() => {
-    axios
-      .get('https://ecommerce-5-74uc.onrender.com/getcartproducts')
-      .then((response) => setCartItems(response.data))
-      .catch((error) => console.error('Error fetching products:', error));
-  }, []);
   const userId = localStorage.getItem('userId');
-
-  const cartProducts = userId ? cartItems.filter((cartItem) => userId.includes(cartItem.userId)) : [];
-  useEffect(() => {
-    // Check if storedDataArray is an array
-    if (Array.isArray(cartProducts)) {
-      const isValuePresent = cartProducts.some(item => item.productId === productId);
-
-      if (isValuePresent) {
-        setisButtonVisible("true");
-      }
-    }
-  }, [productId, cartProducts]);
-
   const nav = useNavigate();
+
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      try {
+        const response = await axios.get('https://ecommerce-5-74uc.onrender.com/getcartproducts');
+        const cartItems = response.data;
+        
+        // Filter cart items based on user ID
+        const cartProducts = userId ? cartItems.filter((cartItem) => userId.includes(cartItem.userId)) : [];
+        
+        // Check if the product is already in the cart
+        const isValuePresent = cartProducts.some(item => item.productId === productId);
+        if (isValuePresent) {
+          setisButtonVisible("true");
+        }
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchCartItems();
+  }, [productId, userId]);
 
   const movetobuy = (Mproduct) => {
     nav("/purchasecheckout", { state: { Mproduct: Mproduct } });

@@ -41,7 +41,7 @@ const PurchaseOrders = () => {
       </div>
       </div>
       ) : (
-    <Container fluid className='mt-3 mb-5'>
+    <Container fluid className=' mt-3 mb-5'>
       <div>
         {OrderProduct.map((order) => (
           <div key={order._id} className='mb-4 p-3  rounded'>
@@ -59,7 +59,7 @@ const PurchaseOrders = () => {
                           <img
                             src={product.productimagePath}
                             alt={product.productname}
-                            className='img-fluid rounded'
+                            className='order-image'
                           />
                         </div>
                       </Col>
