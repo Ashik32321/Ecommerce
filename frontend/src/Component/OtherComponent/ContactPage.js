@@ -33,13 +33,13 @@ function ContactPage() {
       
       <div className='d-flex justify-content-center'>
       <form ref={form} onSubmit={sendEmail} className='p-3'>
-        <h5 className='text-primary text-center'>Contact us</h5>
+        <h4 className='text-primary text-center'>Contact us</h4>
       <label className='form-label'>Name</label><br/>
-      <input type="text" name="Name" /><br/>
+      <input type="text" name="Name" className='form-control'/><br/>
       <label className='form-label'>Phone</label><br/>
-      <input type="tel" name="Phone" /><br/>
+      <input type="tel" name="Phone" className='form-control' /><br/>
       <label className='form-label'>Problem</label><br/>
-      <textarea name="Problem" /><br/>
+      <textarea name="Problem"  className='form-control'/><br/>
       <input type="submit" value="Submit" className='btn btn-primary w-100'/>
     </form>
       

@@ -48,7 +48,7 @@ function SellerAddProducts() {
     formData.append('isdelivered',product.isdelivered)
 
     try {
-      await axios.post('https://ecommerce-5-74uc.onrender.com/addproducts', formData, {
+      await axios.post('http://localhost:3001/addproducts', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
@@ -64,7 +64,7 @@ function SellerAddProducts() {
   return (
     <>
     <BackButton></BackButton>
-    <div className='login-container border border-dark  mt-3 bg-white'>
+    <div className='login-container border border-dark  mt-3 bg-white p-3'>
       <div className='mt-3 mb-3'>
       <h4 className='text-primary text-center'>Add Product</h4>
       <div className='d-flex justify-content-center'>
@@ -73,13 +73,14 @@ function SellerAddProducts() {
           <input type="text" 
                   name="productname" 
                   id="productname" 
+                  size="25"
                   value={product.productname} 
                   onChange={handleInputChange}
                   required
-                  className='form-control' /><br />
+                  className='form-control' />
         
         
-        <label className='form-label'>Product Price:</label>
+        <label className='form-label'>Product Price:</label><br/>
           <input type="number" 
                  name="productprice"
                  id="productprice" 
@@ -87,7 +88,7 @@ function SellerAddProducts() {
                  onChange={handleInputChange}
                  
                  required 
-                 className='form-control' /><br />
+                 className='form-control' />
         
         
         <label className='form-label'>Product Description:</label>
@@ -96,9 +97,9 @@ function SellerAddProducts() {
                     value={product.productdescription} 
                     onChange={handleInputChange} 
                     required 
-                    className='form-control' /><br />
+                    className='form-control' />
         
-        <label className='form-label'>Product Category:</label>
+        <label className='form-label'>Product Category:</label><br/>
         <select name="productcategory"
                 id="productcategory" 
                 value={product.productcategory} 
@@ -112,7 +113,7 @@ function SellerAddProducts() {
           <option value="Womenswear">Womenswear</option>
           <option value="Electronic">Electronic</option>
           <option value="Footwear">Footwear</option>
-        </select><br/>
+        </select>
 
 
         <label className='form-label'>Product Image:</label>

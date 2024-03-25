@@ -54,7 +54,7 @@ const [value,setvalue]=useState({
       formData.append("totalsales",0)
       localStorage.setItem("selleraddressId",sellerDetails.sellerId)
 
-      axios.post("https://ecommerce-5-74uc.onrender.com/sellerregister", formData, {
+      axios.post("http://localhost:3001/sellerregister", formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

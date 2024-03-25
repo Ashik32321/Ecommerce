@@ -52,18 +52,18 @@ function SellerOrders() {
                 onClick={() => movetoorder(order)}>
                 <div className='container  mt-3 mb-3' key={product._id}>
                   <Row>
-                    <Col md={6} sm={6} xs={6}>
+                    <Col md={6} sm={6} xs={12}>
                       <p className='text-center'>
                         {product.productimagePath && (
                           <img src={product.productimagePath} alt={product.productname} className='order-image' />
                         )}
                       </p>
                     </Col>
-                    <Col md={6} sm={6} xs={6}>
+                    <Col md={6} sm={6} xs={12}>
                       <div>
-                        <h6 className='fw-bold text-secondary'>Product Name : <span className='text-danger'>{product.productname}</span></h6>
-                        <p className='fw-bold text-secondary'>Price: <span className='text-danger'>₹{product.productprice}</span></p>
-                        <p className='fw-bold text-secondary'>Quantity: <span className='text-danger'>{product.productquantity}</span></p>
+                        <h6 className='fw-bold text-dark'>Product Name : <span className='text-primary'>{product.productname}</span></h6>
+                        <p className='fw-bold text-dark'>Price: <span className='text-danger'>₹{product.productprice}</span></p>
+                        <p className='fw-bold text-dark'>Quantity: <span className='text-danger'>{product.productquantity}</span></p>
                         <p className='text-success fw-bold'>Your Product have been ordered by a customer</p>
                       </div>
                     </Col>

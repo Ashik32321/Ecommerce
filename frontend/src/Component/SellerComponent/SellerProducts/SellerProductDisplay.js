@@ -86,10 +86,10 @@ function SellerProductDisplay() {
            <Col md={12} sm={12} xs={12}   >
 
         <p className='text-center'>     
-        <button   onClick={() =>removeproduct(location.state.Mproduct._id)} className='custumbutton me-1 mb-3 bg-warning rounded'>Delete</button>
+        <button   onClick={() =>removeproduct(location.state.Mproduct._id)} className='custumbutton me-1 mb-3 bg-primary rounded'>Delete</button>
         {location.state.Mproduct.productstocked === true && (
   <button  
-  onClick={() =>changestockvalue(location.state.Mproduct._id) }className="custumbutton bg-warning rounded">Mark OutofStock</button>
+  onClick={() =>changestockvalue(location.state.Mproduct._id) }className="custumbutton bg-primary rounded">Mark OutofStock</button>
 
          
       ) }

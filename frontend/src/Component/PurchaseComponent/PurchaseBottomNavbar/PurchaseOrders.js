@@ -65,14 +65,14 @@ const PurchaseOrders = () => {
                       </Col>
                       <Col md={6} sm={6} xs={12}>
                         <div>
-                          <h6 className='fw-bold text-danger'>
-                            Product Name : {product.productname}
-                          </h6>
-                          <p className='fw-bold text-secondary'>
-                            Price: ₹{product.productprice}
+                          <p className='fw-bold text-dark'>
+                            Product Name : <span className='text-primary'>{product.productname}</span>
                           </p>
-                          <p className='fw-bold text-secondary'>
-                            Quantity : {product.productquantity}
+                          <p className='fw-bold text-dark'>
+                            Price: <span className='text-danger'>₹{product.productprice}</span>
+                          </p>
+                          <p className='fw-bold text-dark'>
+                            Quantity : <span className='text-danger'>{product.productquantity}</span> 
                           </p>
                         </div>
                       </Col>
