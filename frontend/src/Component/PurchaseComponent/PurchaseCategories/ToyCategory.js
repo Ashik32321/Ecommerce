@@ -4,7 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import "../PurchaseCssFiles/PurchaseCategorydisplay.css"
 import Backbutton from "../../OtherComponent/BackButton"
-
+import PurchaseFooter from "../PurchaseOtherComponent/PurchaseFooter"
 function ToyCategory() {
     const [Toyproducts,settoyproducts]=useState([])
     const nav=useNavigate()
@@ -49,6 +49,7 @@ function ToyCategory() {
         ))}
       </Row>
     </Container>
+    <PurchaseFooter/>
       </>
   )
 }

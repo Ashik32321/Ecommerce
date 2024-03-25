@@ -3,9 +3,11 @@
 import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import BackButton from './BackButton';
+import { useNavigate } from 'react-router-dom';
 
 function ContactPage() {
   const form = useRef();
+  const navigate=useNavigate()
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -16,7 +18,8 @@ function ContactPage() {
       })
       .then(
         () => {
-          console.log('Your Issue have been sent ');
+          alert('Your Issue have been sent ');
+          navigate(-1)
         },
         (error) => {
           console.log('Failed to send issue', error.text);

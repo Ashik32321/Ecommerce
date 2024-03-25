@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Link} from 'react-router-dom'
 import "../SellerCssFiles/SellerTopNavbar.css"
-import FlottingButton from '../../PurchaseComponent/PurchaseOtherComponent/FlottingButton'
+import SellerFlottingbutton from '../SellerOtherComponents/SellerFlottingbutton'
 
 
 function SellerTopNavbar() {
@@ -29,7 +29,7 @@ function SellerTopNavbar() {
                   <button onClick={logout} className='btn btn-danger me-1 mt-2'>
                   Logout
                 </button>
-                <FlottingButton position="floating-button-bottom-right"/></>
+                <SellerFlottingbutton position="floating-button-bottom-right"/></>
                     ) : (
                       <Link to="/sellerlogin" className='btn btn-success me-1 mt-2'>
                       Login

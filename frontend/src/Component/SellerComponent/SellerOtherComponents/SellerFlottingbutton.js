@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import '../PurchaseCssFiles/FlottingButton.css'; // Correct the filename if necessary
+import React, { useState, useEffect } from 'react';// Correct the filename if necessary
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeadset } from '@fortawesome/free-solid-svg-icons';
 
-const FlottingButton = () => {
+const SellerFlottingbutton = () => {
     const navigate = useNavigate();
 
     // Set initial position to bottom right by default
@@ -32,7 +31,7 @@ const FlottingButton = () => {
                 setPosition({ x: window.innerWidth - 200, y: window.innerHeight - 620 });
             } else {
                 // Mobile view - set initial position to top right
-                setPosition({ x: window.innerWidth - 70, y: 20 });
+                setPosition({ x: window.innerWidth - 70, y: 110 });
             }
         };
         // Call handleResize initially
@@ -67,4 +66,4 @@ const FlottingButton = () => {
     );
 };
 
-export default FlottingButton;
+export default SellerFlottingbutton;
