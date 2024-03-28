@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import "./CssFiles/SellerLoginReg.css"
 
 function SellerResetPassword() {
+  const [loading, setLoading] = useState(false);
   const [value, setValue] = useState({
     userpassword: '',
     usercpassword: '',
@@ -12,7 +13,7 @@ function SellerResetPassword() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
 
-  const sellerphone = localStorage.getItem('sellerresetphone');
+  const sellerphone = sessionStorage.getItem('sellerresetphone');
   const nav = useNavigate();
 
   const togglePasswordVisibility = () => {
@@ -38,7 +39,7 @@ function SellerResetPassword() {
 
     
   
-    
+      setLoading(true)
         const resetResponse = await axios.put('https://ecommerce-5-74uc.onrender.com/sellerresetpassword', {
             sellerphone: sellerphone,
             sellerpassword: value.userpassword,
@@ -46,15 +47,18 @@ function SellerResetPassword() {
   
         if (resetResponse.status === 200) {
           alert('Password Reset successfully');
+          setLoading(false)
           nav('/sellerlogin', { replace: true });
         } else {
           console.error('Password reset failed:', resetResponse.data.message);
           setError('Password reset failed. Please try again.');
+          setLoading(false)
         }
       
     } catch (error) {
       console.error('Error:', error.message);
       setError('Failed to reset password. Please try again.');
+      setLoading(false)
     }
   };
   
@@ -93,10 +97,15 @@ function SellerResetPassword() {
           />
 
           {error && <div className='text-danger mb-3'>{error}</div>}
+          <>
+    {loading ? (
+     
+     <button className="btn btn-secondary w-100">Loading...</button>
+  ) : (
 
           <button type='submit' className='btn btn-primary w-100'>
             Submit
-          </button>
+          </button>)}</>
         </div>
       </form>
     </div>

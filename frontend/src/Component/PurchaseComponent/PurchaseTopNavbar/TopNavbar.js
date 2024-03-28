@@ -12,7 +12,7 @@ import '../PurchaseCssFiles/FlottingButton.css';
 
 function TopNavbar() {
     let  isButtonVisible =useState("false")
-    isButtonVisible = localStorage.getItem("userlogedin");
+    isButtonVisible = sessionStorage.getItem("userlogedin");
     const [searchQuery, setSearchQuery] = useState('');
     const nav = useNavigate()
 
@@ -29,19 +29,19 @@ function TopNavbar() {
             let items = response.data
 
             const dataArrayString = JSON.stringify(items);
-            localStorage.setItem("searchitem", dataArrayString)
+            sessionStorage.setItem("searchitem", dataArrayString)
             nav("/searchdisplay")
 
 
         } catch (error) {
-            console.error('Error searching items:', error);
+            alert('Error searching items');
             // Handle error, display an error message to the user, etc.
         }
     };
 
 
     const logout = () => {
-        localStorage.setItem("userlogedin", false)
+        sessionStorage.setItem("userlogedin", false)
         alert("logged out successfuly")
         window.location.reload();
     }

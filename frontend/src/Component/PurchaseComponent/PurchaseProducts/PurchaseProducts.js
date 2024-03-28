@@ -5,15 +5,18 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { Container, Row, Col } from 'react-bootstrap';
 import "../PurchaseCssFiles/PurchaseProducts.css";
+import { RiseLoader } from 'react-spinners';
 
 const PurchaseProducts = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const nav = useNavigate();
 
   useEffect(() => {
     // Fetch all products from the server on component mount
     axios.get('https://ecommerce-5-74uc.onrender.com/getproducts')
-      .then((response) => setProducts(response.data))
+      .then((response) => {setProducts(response.data);
+                           setLoading(false);})
       .catch((error) => console.error('Error fetching products:', error));
   }, []);
 
@@ -22,6 +25,16 @@ const PurchaseProducts = () => {
   };
 
   return (
+    <>
+     {loading ? (
+                    <div className="mt-5 ">
+                     <p className='text-center'>
+                      <RiseLoader color={'#0000FF'} loading={loading} size={15}  /><br/>
+                      <h6 >Loading...</h6></p>
+                        
+                  
+                    </div>
+                ) : (
     <Container fluid className='mt-3 mb-5'>
       <Row>
         {products.map((product) => (
@@ -42,7 +55,8 @@ const PurchaseProducts = () => {
           </Col>
         ))}
       </Row>
-    </Container>
+    </Container>)}
+    </>
   );
 };
 

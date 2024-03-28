@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 function PurchaseFooter() {
   return (
-    <Container fluid className="bg-white footer-custom  fw-bold">
+    <Container fluid className="bg-white footer-custom  fw-bold " >
       <Row className="justify-content-center text-center py-5">
         <Col md={3} sm={6} xs={12} className="mb-4">
           <h5><u>About</u></h5>

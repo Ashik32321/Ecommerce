@@ -7,9 +7,11 @@ import { Link,useNavigate } from "react-router-dom"
 import axios from "axios"
 import Backbutton from "../../../OtherComponent/BackButton"
 
+
 function PurchaseLogin() {
 
     //PurchaseLoginVariables
+    const [loading, setLoading] = useState(false);
     const [Userdetails, handleUserDetails] = useRegistration({
         userphone: "",
         userpassword: "",
@@ -26,22 +28,27 @@ function PurchaseLogin() {
     // Authentication and  Login
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true)
 
         try {
             const result = await axios.post("https://ecommerce-5-74uc.onrender.com/login", { ...Userdetails });
             console.log(result);
 
             if (result.data.status === "success") {
-                localStorage.setItem("userlogedin", JSON.stringify(true));
-                localStorage.setItem("userId", JSON.stringify(result.data.userId));
+                sessionStorage.setItem("userlogedin", JSON.stringify(true));
+                sessionStorage.setItem("userId", JSON.stringify(result.data.userId));
+                setLoading(false)
                 nav('../');
             } else if (result.data.status === "passwordIncorrect") {
+                setLoading(false)
                 alert("The password is incorrect");
             } else {
+                setLoading(false)
                 alert("Invalid credentials");
             }
         } catch (error) {
             console.error("Error:", error);
+            setLoading(false)
             alert("Server error");
         }
     };
@@ -91,9 +98,17 @@ function PurchaseLogin() {
 
                             <Link to="../purchaseforgotpassword" className="text-decoration-none custom-link">Forgot Password</Link><br />
                             <Link to="../purchasereg" className="text-decoration-none custom-link">Create a new Account</Link><br /><br />
+                            <>
+                            {loading ? (
+                  
+                  <button className="btn btn-secondary w-100">Loading...</button>
+                      
+                
+               
+                ) : (
 
 
-                            <button type="submit" className=" btn btn-primary  w-100" >Login</button>
+                            <button type="submit" className=" btn btn-primary  w-100" >Login</button>)}</>
 
                         </form>
                     </div>

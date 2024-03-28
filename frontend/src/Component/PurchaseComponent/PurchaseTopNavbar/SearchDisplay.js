@@ -9,7 +9,7 @@ import BackButton from '../../OtherComponent/BackButton';
 const SearchDisplay = () => {
 
     const nav = useNavigate()
-    const storedDataArrayString = localStorage.getItem('searchitem');
+    const storedDataArrayString = sessionStorage.getItem('searchitem');
     const storedDataArray = JSON.parse(storedDataArrayString);
 
     const movetobuy = (Mproduct) => {

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import { Container, Row, Col } from 'react-bootstrap';
+import { RiseLoader } from 'react-spinners';
 
 import { useNavigate } from 'react-router-dom';
 
 
 const SellerProduct= () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const nav=useNavigate()
 
  
@@ -14,17 +16,19 @@ const SellerProduct= () => {
 
 
   useEffect(() => {
-    axios.get('http://localhost:3001/getproducts')
-      .then((response) => setProducts(response.data))
+    axios.get('https://ecommerce-5-74uc.onrender.com/getproducts')
+      .then((response) => {setProducts(response.data);
+                            setLoading(false);
+      })
       .catch((error) => console.error('Error fetching products:', error));
   }, []);
 
 
-  const sellerId=localStorage.getItem("sellerId")
+  const sellerId=sessionStorage.getItem("sellerId")
   const SellerProducts = products.filter(product => sellerId.includes(product.SellerID));
 
   const Productlength=SellerProducts.length
-  localStorage.setItem("Productlength",Productlength)
+  sessionStorage.setItem("Productlength",Productlength)
 
   const moveToDisplay =(Mproduct)=>{
     nav("/sellerproductdisplay",{state:{Mproduct:Mproduct}})
@@ -34,6 +38,16 @@ const SellerProduct= () => {
 
  
   return (
+    <>
+    {loading ? (
+      <div className="loder-container ">
+      <p className='text-center'>
+       <RiseLoader color={'#0000FF'} loading={loading} size={15}  /><br/>
+       <h6 >Loading...</h6></p>
+         
+   
+     </div>
+  ) : (
     <div className='container-fluid mt-5 border shadow-sm p-5 mb-5 bg-white rounded'>
       {SellerProducts.length === 0 ? (
         <div className="emptyCartMessage">
@@ -68,7 +82,8 @@ const SellerProduct= () => {
           </Row>
         </Container>
       )}
-    </div>
+    </div>)}
+    </>
   );
 };
 

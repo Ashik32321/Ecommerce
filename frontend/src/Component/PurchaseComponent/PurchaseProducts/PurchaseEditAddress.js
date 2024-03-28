@@ -4,7 +4,7 @@ import axios from 'axios';
 import BackButton from "../../OtherComponent/BackButton"
 
 
-function PurchaseDeliveryAddress() {
+function PurchaseEditAddress() {
   const userId = sessionStorage.getItem('userId');
   const [loading, setLoading] = useState(false);
   
@@ -19,7 +19,6 @@ function PurchaseDeliveryAddress() {
     userlocality: '',
     uservillage: '',
     userhno: '',
-    userId: userId,
   });
 
   const nav = useNavigate();
@@ -93,24 +92,20 @@ function PurchaseDeliveryAddress() {
     setAddress({ ...Address, [e.target.name]: e.target.value });
   };
 
-  const saveaddress = (e) => {
+  const Editaddress = async (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
 
-    axios
-      .post('https://ecommerce-5-74uc.onrender.com/saveaddress', { ...Address })
-      .then(() => {
-        alert("address added successfully")
-        setLoading(false)
-        nav(-1);
-      })
-      .catch(() => {
-        setLoading(false)
-        alert('Server error');
-      });
-
-    
-   
+    try {
+      await axios.put(`http://localhost:3001/editaddress/${userId}`, Address);
+      setLoading(false);
+      alert('Address updated successfully');
+      nav(-1);
+    } catch (error) {
+      console.error('Error updating address:', error);
+      setLoading(false);
+      // Handle error gracefully, e.g., show error message to the user
+    }
   };
 
   return (
@@ -118,7 +113,7 @@ function PurchaseDeliveryAddress() {
       <BackButton />
       <div className='container border mt-3 p-3 bg-white'>
         <h3 className='text-center text-primary'>Address</h3>
-        <form className='d-flex justify-content-center' onSubmit={saveaddress}>
+        <form className='d-flex justify-content-center' onSubmit={Editaddress}>
           <table>
             <tr>
               <td className='p-2'>
@@ -270,7 +265,8 @@ function PurchaseDeliveryAddress() {
             <tr>
             <td colSpan='2'>
               <> {loading ? (
-                   <button className="btn btn-secondary w-100">Loading...</button>
+                    
+                     <button  className='btn btn-secondary w-100' >Loading...</button>
                 ) : (<button className='btn btn-primary w-100' >Add</button>)}</>
               
             </td>
@@ -282,4 +278,4 @@ function PurchaseDeliveryAddress() {
   );
 }
 
-export default PurchaseDeliveryAddress;
+export default PurchaseEditAddress;

@@ -5,19 +5,22 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import "../PurchaseCssFiles/PurchaseAddtocart.css"
 import BackButton from '../../OtherComponent/BackButton';
+import { RiseLoader } from 'react-spinners';
 
 const PurchaseAddtocart = () => {
   const [cartItems, setCartItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const nav = useNavigate();
 
   useEffect(() => {
     axios
       .get('https://ecommerce-5-74uc.onrender.com/getcartproducts')
-      .then((response) => setCartItems(response.data))
+      .then((response) =>{ setCartItems(response.data);
+                            setLoading(false);})
       .catch((error) => console.error('Error fetching products:', error));
   }, []);
 
-  const userId = localStorage.getItem('userId');
+  const userId = sessionStorage.getItem('userId');
 
   const cartProducts = cartItems.filter((cartItem) => userId.includes(cartItem.userId));
 
@@ -61,11 +64,20 @@ const PurchaseAddtocart = () => {
   const dataArrayString = JSON.stringify(cartProducts);
 
 // Store the JSON string in local storage
-localStorage.setItem('products', dataArrayString);
+sessionStorage.setItem('products', dataArrayString);
 
   return (
     <>
     <BackButton></BackButton>
+    {loading ? (
+      <div className="loder-container ">
+      <p className='text-center'>
+       <RiseLoader color={'#0000FF'} loading={loading} size={15}  /><br/>
+       <h6 >Loading...</h6></p>
+         
+   
+     </div>
+  ) : (
     <div className='container  mt-5 border shadow-sm p-5 mb-5 bg-white rounded '>
       {cartProducts.length === 0 ? (
         <div className="emptyCartMessage ">
@@ -130,7 +142,7 @@ localStorage.setItem('products', dataArrayString);
           </table>
         </div>
       )}
-    </div>
+    </div>)}
     </>
   );
 };

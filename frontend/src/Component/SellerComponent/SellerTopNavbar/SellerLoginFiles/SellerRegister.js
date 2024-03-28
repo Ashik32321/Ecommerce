@@ -7,6 +7,7 @@ import { UseSellerRegistration } from './UseSellerRegistration';
 import "./CssFiles/SellerLoginReg.css"
 
 function SellerRegister() {
+  const [loading, setLoading] = useState(false);
   const [sellerDetails, handleSellerDetails ] = UseSellerRegistration({
     
     sellerId:"",
@@ -43,6 +44,7 @@ const [value,setvalue]=useState({
     } else if (sellerDetails.sellerpassword !== sellerDetails.sellercpassword) {
       alert("password mismatch");
     } else {
+      setLoading(true)
       const formData = new FormData();
       formData.append('sellername', sellerDetails.sellername);
       formData.append('sellershopname', sellerDetails.sellershopname);
@@ -52,7 +54,7 @@ const [value,setvalue]=useState({
       formData.append('sellerlogo', value.sellerlogo);
       formData.append("sellerId",sellerDetails.sellerId)
       formData.append("totalsales",0)
-      localStorage.setItem("selleraddressId",sellerDetails.sellerId)
+      sessionStorage.setItem("selleraddressId",sellerDetails.sellerId)
 
       axios.post("https://ecommerce-5-74uc.onrender.com/sellerregister", formData, {
         headers: {
@@ -63,13 +65,16 @@ const [value,setvalue]=useState({
           console.log(result);
           if (result.data === "user already registered") {
             alert("seller already registered ");
+            setLoading(false)
             nav("/sellerlogin");
           } else if (result.data === "user registered successfully") {
+            setLoading(false)
             nav("/selleraddress");
           }
         })
         .catch(err => {
           console.log(err);
+          setLoading(false)
           alert("Server error");
         });
     }
@@ -186,7 +191,12 @@ const [value,setvalue]=useState({
               </tr>
               <tr>
                 <td colSpan="2" className='p-2 text-center' >
-                  <button type='submit' className="btn btn-primary w-50">Next</button>
+                <>
+    {loading ? (
+     
+     <button className="btn btn-secondary w-100">Loading...</button>
+  ) : (
+                  <button type='submit' className="btn btn-primary w-50">Next</button>)}</>
                 </td>
               </tr>
             </table>

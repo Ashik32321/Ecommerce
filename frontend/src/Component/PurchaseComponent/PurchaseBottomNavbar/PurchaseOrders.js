@@ -6,19 +6,22 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import BackButton from '../../OtherComponent/BackButton';
 import "../PurchaseCssFiles/PurchaseEmpty.css"
+import { RiseLoader } from 'react-spinners';
 
 const PurchaseOrders = () => {
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
   const nav = useNavigate();
 
   useEffect(() => {
     axios
       .get('https://ecommerce-5-74uc.onrender.com/getorderproducts')
-      .then((response) => setOrders(response.data))
+      .then((response) => {setOrders(response.data);
+                           setLoading(false);})
       .catch((error) => console.error('Error fetching orders:', error));
   }, []);
 
-  const userId = localStorage.getItem('userId');
+  const userId = sessionStorage.getItem('userId');
   const OrderProduct = orders.filter((product) => userId.includes(product.orderid));
 
   const movetoorder = (Orderproduct, productid) => {
@@ -28,6 +31,15 @@ const PurchaseOrders = () => {
   return (
     <>
     <BackButton></BackButton>
+    {loading ? (
+      <div className="loder-container ">
+      <p className='text-center'>
+       <RiseLoader color={'#0000FF'} loading={loading} size={15}  /><br/>
+       <h6 >Loading...</h6></p>
+         
+   
+     </div>
+  ) : (<>
     {OrderProduct.length === 0 ? (
       <div className='container bg-white mt-5 p-5'>
         <div className="emptyCartMessage ">
@@ -84,7 +96,7 @@ const PurchaseOrders = () => {
           </div>
         ))}
       </div>
-    </Container>)}
+    </Container>)} </>)}
     </>
   );
 };

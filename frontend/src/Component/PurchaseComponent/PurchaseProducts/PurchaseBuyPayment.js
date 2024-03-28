@@ -4,26 +4,30 @@ import { Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import { loadStripe } from "@stripe/stripe-js";
 import BackButton from "../../OtherComponent/BackButton"
+import { RiseLoader } from 'react-spinners';
 
 const PurchaseBuyPayment = () => {
  
-  const storedDataArrayString = localStorage.getItem('buyproducts');
+  const storedDataArrayString = sessionStorage.getItem('buyproducts');
   const nav = useNavigate();
   const storedDataArray = JSON.parse(storedDataArrayString);
+  const [loading, setLoading] = useState(true);
+  const [ploading, setpLoading] = useState(false);
 
   const { SellerID,productname, productimagePath,productprice} = storedDataArray;
   console.log(SellerID)
   
-  const quantity = localStorage.getItem("quantity");
+  const quantity = sessionStorage.getItem("quantity");
 
   const [Deliveryaddress, setDeliveryaddress] = useState([]);
   useEffect(() => {
     axios.get('https://ecommerce-5-74uc.onrender.com/getdeliveryaddress')
-      .then(response => setDeliveryaddress(response.data))
+      .then(response => {setDeliveryaddress(response.data)
+        setLoading(false);})
       .catch(error => console.error(error));
   }, []);
 
-  const userId = localStorage.getItem("userId");
+  const userId = sessionStorage.getItem("userId");
   const Address = Deliveryaddress.filter(ad => userId.includes(ad.userId));
 
   const [paymentOption, setPaymentOption] = useState(null);
@@ -51,7 +55,7 @@ const PurchaseBuyPayment = () => {
     e.preventDefault();
     if (Address.length === 0) {
       alert("Add Address");
-    } else if (paymentOption === 'cod') {
+    } else if (paymentOption === 'COD') {
       try {
         // Example using fetch
         const response = await fetch('https://ecommerce-5-74uc.onrender.com/orders', {
@@ -70,6 +74,7 @@ const PurchaseBuyPayment = () => {
       alert('Payment successful with Cash on Delivery!');
       nav("/success");
     } else if (paymentOption === 'DebitCard') {
+      setpLoading(true)
       try {
         const stripe = await loadStripe("pk_test_51OcqX2SI1KcZYWZz4HtvKCIyK2BvfJ1edIB2cry3wWAkO4aNcdhHja8qPFnNJLBVQ0xECMahM1su42GJTV2byjGZ00HLO7kDdt");
         const body = {
@@ -94,7 +99,7 @@ const PurchaseBuyPayment = () => {
         });
     
         if (result.error) {
-          alert('Error processing payment with Stripe');
+          alert('Error processing payment ');
           console.error('Stripe Error:', result.error);
         } else {
           // Payment successful with Stripe, proceed to handle order
@@ -108,6 +113,7 @@ const PurchaseBuyPayment = () => {
     
           const orderData = await orderResponse.json();
           console.log('Order Data:', orderData);
+          setpLoading(false)
     
           
         }
@@ -127,9 +133,20 @@ const PurchaseBuyPayment = () => {
     <BackButton></BackButton>
     <div>
       <div className='container  mt-5 border shadow-sm p-1 mb-5 bg-white rounded '>
+      {loading ? (
+                    <div className="mt-5 ">
+                     <p className='text-center'>
+                      <RiseLoader color={'#0000FF'} loading={loading} size={15}  /><br/>
+                      <h6 >Loading...</h6></p>
+                        
+                  
+                    </div>
+                ) : ( <>
         <h6>Delivery Address</h6>
         <Row>
           <Col>
+        
+         
           {Address.map((DAddress) =>(
             <div key={DAddress._id} >
               
@@ -145,20 +162,32 @@ const PurchaseBuyPayment = () => {
            
 
           ))}
+         
           </Col>
           <Col>
-          {Address.length === 0 && (
+          {Address.length === 0 ?(
             <p className='text-end'>
              <Link to="/purchasedeliveryaddress" className='btn btn-primary '>ADD</Link>
              </p>
         
-      ) }
+      ):(<p className='text-end'>
+      <Link to="/purchaseeditaddress" className='btn btn-primary '>Edit</Link>
+      </p>) }
        
         </Col>
-        </Row>
+        </Row></>)}
+         
        
       </div>
       <div className='container  mt-5 border shadow-sm p-1 mb-5 bg-white rounded '>
+      {ploading ? (
+                    <div className="mt-5 ">
+                     <p className='text-center'>
+                      <h6 >Loading...</h6></p>
+                        
+                  
+                    </div>
+                ) : (
       <form>
         <h6> Method of Payment</h6>
       
@@ -176,14 +205,14 @@ const PurchaseBuyPayment = () => {
           type="radio"
           name="paymentOption"
           value="cod"
-          onChange={() => handlePaymentOptionChange('cod')}
+          onChange={() => handlePaymentOptionChange('COD')}
         />
         Cash on Delivery
       </label>            <br/>
         <p className='text-center'>
         <button className='btn btn-primary'   onClick={makePayment} >Make Payment</button></p>
      
-      </form>
+      </form>)}
       </div>
 
     </div>

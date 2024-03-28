@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react';
 import {  Routes,Route } from 'react-router-dom'
+import { RiseLoader } from 'react-spinners';
 import PurchaseLogin from './Component/PurchaseComponent/PurchaseTopNavbar/LoginRegFiles/PurchaseLogin'
 import PurchaseForgotPassword from './Component/PurchaseComponent/PurchaseTopNavbar/LoginRegFiles/PurchaseForgotPassword'
 import PurchaseReg from './Component/PurchaseComponent/PurchaseTopNavbar/LoginRegFiles/PurchaseReg'
@@ -25,35 +26,61 @@ import PurchaseOrderDisplay from "./Component/PurchaseComponent/PurchaseBottomNa
 import SearchDisplay from './Component/PurchaseComponent/PurchaseTopNavbar/SearchDisplay'
 import PurchaseCancel from './Component/PurchaseComponent/PurchaseOtherComponent/PurchaseCancel'
 import ContactPage from './Component/OtherComponent/ContactPage'
+import PurchaseEditAddress from './Component/PurchaseComponent/PurchaseProducts/PurchaseEditAddress';
+
+
+
+function LoadingComponent({ children }) {
+  const [loading, setLoading] = useState(true);
+
+  // Simulate loading time, set loading to false after 1.5 seconds
+  setTimeout(() => {
+    setLoading(false);
+  }, 1500);
+
+  return loading ? (
+    <div className="loder-container ">
+                     <p className='text-center'>
+                      <RiseLoader color={'#0000FF'} loading={loading} size={15}  /><br/>
+                      <h6 >Loading...</h6></p>
+                        
+                  
+                    </div>
+  ) : (
+    children
+  );
+}
 
 function PuchaseRoutes() {
   return (
     <div>
         <Routes>
-            <Route  element={<PurchaseLogin/>} path="/purchaselogin"></Route>
-            <Route element={<PurchaseForgotPassword/>} path="/purchaseforgotpassword"></Route>
-            <Route element={<PurchaseReg/>} path="purchasereg"></Route>
-            <Route element={<PurchaseResetPassword/>} path="/purchaseresetpassword"></Route>
-            <Route element={<PurchaseHome/>} path="/"></Route>
-            <Route element={<GotoPurchaseLogin/>} path="gotopurchaselogin"></Route>
-            <Route element={<PurchasePrivate><PurchaseAddtocart/></PurchasePrivate>} path="/purchaseaddtocart"></Route>
-            <Route element={<PurchasePrivate><PurchaseOrders/></PurchasePrivate>} path="/purchaseorders"/>
-            <Route element={<MobileCategory/>} path="/mobilecategory"></Route>
-            <Route element={<ToyCategory/>} path="/toycategory"></Route>
-            <Route element={<WomenswearCategory/>} path="/womenscategory"></Route>
-            <Route element={<GentsCategory/>} path="/gentscategory"></Route>
-            <Route element={<FootwearCategory/>} path="/footwearcategory"></Route>
-            <Route element={<ElectronicCategory/>} path="/electroniccategory"></Route>
-            <Route element={<PurchaseProductDisplay/>} path="/productdisplay"></Route>
-            <Route element={<PurchasePrivate><PurchaseCheckout/></PurchasePrivate>} path="/purchasecheckout"></Route>
-            <Route element={<PurchasePrivate><PurchaseBuyPayment/></PurchasePrivate>} path="/purchasebuypayment"></Route>
-            <Route element={<PurchasePrivate><PurchaseSuccess/></PurchasePrivate>} path="/success"></Route>
-            <Route element={<PurchasePrivate><PurchaseCartPayment/></PurchasePrivate>} path="/purchasecartpayment"></Route>
-            <Route element={<PurchasePrivate><PurchaseDeliveryAddress/></PurchasePrivate>} path="/purchasedeliveryaddress"></Route>
-            <Route element={<PurchasePrivate><PurchaseOrderDisplay/></PurchasePrivate>} path="/purchaseorderdisplay"></Route>
-            <Route element={<SearchDisplay/>} path="/searchdisplay"></Route>
-            <Route element={<PurchasePrivate><PurchaseCancel/></PurchasePrivate>} path="cancel"></Route>
-            <Route element={<ContactPage/>} path="/contactpage"></Route>
+        <Route element={<LoadingComponent><PurchaseLogin /></LoadingComponent>} path="/purchaselogin" />
+        <Route element={<LoadingComponent><PurchaseForgotPassword /></LoadingComponent>} path="/purchaseforgotpassword" />
+        <Route element={<LoadingComponent><PurchaseReg /></LoadingComponent>} path="/purchasereg" />
+        <Route element={<LoadingComponent><PurchaseResetPassword /></LoadingComponent>} path="/purchaseresetpassword" />
+        <Route element={<LoadingComponent><PurchaseHome /></LoadingComponent>} path="/" />
+        <Route element={<LoadingComponent><GotoPurchaseLogin /></LoadingComponent>} path="gotopurchaselogin" />
+        <Route element={<LoadingComponent><PurchasePrivate><PurchaseAddtocart /></PurchasePrivate></LoadingComponent>} path="/purchaseaddtocart" />
+        <Route element={<LoadingComponent><PurchasePrivate><PurchaseOrders /></PurchasePrivate></LoadingComponent>} path="/purchaseorders" />
+        <Route element={<LoadingComponent><MobileCategory /></LoadingComponent>} path="/mobilecategory" />
+        <Route element={<LoadingComponent><ToyCategory /></LoadingComponent>} path="/toycategory" />
+        <Route element={<LoadingComponent><WomenswearCategory /></LoadingComponent>} path="/womenscategory" />
+        <Route element={<LoadingComponent><GentsCategory /></LoadingComponent>} path="/gentscategory" />
+        <Route element={<LoadingComponent><FootwearCategory /></LoadingComponent>} path="/footwearcategory" />
+        <Route element={<LoadingComponent><ElectronicCategory /></LoadingComponent>} path="/electroniccategory" />
+        <Route element={<LoadingComponent><PurchaseProductDisplay /></LoadingComponent>} path="/productdisplay" />
+         
+            <Route element={<LoadingComponent><PurchasePrivate><PurchaseCheckout/></PurchasePrivate></LoadingComponent>} path="/purchasecheckout"></Route>
+            <Route element={<LoadingComponent><PurchasePrivate><PurchaseBuyPayment/></PurchasePrivate></LoadingComponent>} path="/purchasebuypayment"></Route>
+            <Route element={<LoadingComponent><PurchasePrivate><PurchaseSuccess/></PurchasePrivate></LoadingComponent>} path="/success"></Route>
+            <Route element={<LoadingComponent><PurchasePrivate><PurchaseCartPayment/></PurchasePrivate></LoadingComponent>} path="/purchasecartpayment"></Route>
+            <Route element={<LoadingComponent><PurchasePrivate><PurchaseDeliveryAddress/></PurchasePrivate></LoadingComponent>} path="/purchasedeliveryaddress"></Route>
+            <Route element={<LoadingComponent><PurchasePrivate><PurchaseOrderDisplay/></PurchasePrivate></LoadingComponent>} path="/purchaseorderdisplay"></Route>
+            <Route element={<LoadingComponent><SearchDisplay/></LoadingComponent>} path="/searchdisplay"></Route>
+            <Route element={<LoadingComponent><PurchasePrivate><PurchaseCancel/></PurchasePrivate></LoadingComponent>} path="cancel"></Route>
+            <Route element={<LoadingComponent><ContactPage/></LoadingComponent>} path="/contactpage"></Route>
+            <Route element={<LoadingComponent><PurchasePrivate><PurchaseEditAddress/></PurchasePrivate></LoadingComponent>} path="/purchaseeditaddress"></Route>
 
 
             

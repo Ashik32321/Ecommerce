@@ -23,7 +23,7 @@ function PurchaseOrderDisplay() {
             .catch(error => console.error(error));
     }, []);
 
-    const userId = localStorage.getItem("userId")
+    const userId = sessionStorage.getItem("userId")
     const Address = Deliveryaddress.filter(ad => userId.includes(ad.userId));
     const progressData = [
         { step: 'Processing', completed: orderproduct.processed },

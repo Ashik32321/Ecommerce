@@ -11,7 +11,7 @@ import SellerFooter from './SellerFooter'
 
 
 function SellerHome() {
-  const isButtonVisible =localStorage.getItem("isSellerLoggedIn")
+  const isButtonVisible =sessionStorage.getItem("isSellerLoggedIn")
   return (
     <div>
       

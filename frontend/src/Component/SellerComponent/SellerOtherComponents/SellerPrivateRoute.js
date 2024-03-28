@@ -4,7 +4,7 @@ import { Navigate} from 'react-router-dom'
 
 
 function SellerPrivateRoute({children}) {
-const value=localStorage.getItem("isSellerLoggedIn")
+const value=sessionStorage.getItem("isSellerLoggedIn")
 
 
     

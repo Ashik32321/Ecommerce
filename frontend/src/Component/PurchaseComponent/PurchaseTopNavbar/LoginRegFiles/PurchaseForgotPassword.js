@@ -6,12 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import Backbutton from "../../../OtherComponent/BackButton"
 
 function PurchaseForgotPassword() {
+  const [loading, setLoading] = useState(false);
     const navigate =useNavigate()
     const [value, setValue] = useState({
       phone: '',
       otp: '',
     });
-    localStorage.setItem("resetphone",value.phone)
+    sessionStorage.setItem("resetphone",value.phone)
   
     const handleOtp = async (e) => {
       e.preventDefault();
@@ -48,21 +49,26 @@ function PurchaseForgotPassword() {
   
     const handleSubmit = async (e) => {
       e.preventDefault();
+      setLoading(true)
     
       try {
         const result = await axios.post("https://ecommerce-5-74uc.onrender.com/validateotp", { ...value });
         console.log(result);
     
         if (result.data.status === "success") {
+          setLoading(false)
           navigate("/purchaseresetpassword")
          
         } else if (result.data.status === "otp mismatch") {
+          setLoading(false)
           alert("otp mismatch");
         } else {
+          setLoading(false)
           alert("Invalid credentials");
         }
       } catch (error) {
         console.error("Error:", error);
+        setLoading(false)
         alert("Server error");
       }
     };
@@ -109,10 +115,14 @@ function PurchaseForgotPassword() {
                 </button>
               </div>
               <br />
-    
+              <>
+                            {loading ? (
+                  
+                  <button className="btn btn-secondary w-100">Loading...</button>
+               ) : (
               <button type='submit' className='btn btn-primary w-100'>
                 Submit
-              </button>
+              </button>)}</>
             </form>
           </div>
         </div>

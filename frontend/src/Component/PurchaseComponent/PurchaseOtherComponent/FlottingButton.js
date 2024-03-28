@@ -14,17 +14,6 @@ const FlottingButton = () => {
         e.dataTransfer.setDragImage(new Image(), 0, 0);
     };
 
-    const handleDragOver = (e) => {
-        e.preventDefault();
-    };
-
-    const handleDrop = (e) => {
-        setPosition({
-            x: e.clientX - 25,
-            y: e.clientY - 25,
-        });
-    };
-
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth > 768) {

@@ -33,8 +33,8 @@ const nav=useNavigate()
 
 
 const total=location.state.Mproduct.productprice*value
-localStorage.setItem("totalprice",total)
-localStorage.setItem("quantity",value)
+sessionStorage.setItem("totalprice",total)
+sessionStorage.setItem("quantity",value)
 
 
 
@@ -50,7 +50,7 @@ localStorage.setItem("quantity",value)
 const dataArrayString = JSON.stringify(location.state.Mproduct);
 
 // Store the JSON string in local storage
-localStorage.setItem('buyproducts', dataArrayString);
+sessionStorage.setItem('buyproducts', dataArrayString);
 
 
 
@@ -77,7 +77,7 @@ localStorage.setItem('buyproducts', dataArrayString);
       
       
       <Col md={6} sm={6} xs={6}   >
-        <p className=' border shadow-sm p-1 mb-5 bg-white rounded  mt-4 text-center'>
+        <p className=' border shadow-sm p-4 mb-5 bg-white rounded  mt-4 text-center'>
 
       <img src={location.state.Mproduct.productimagePath} alt={location.state.Mproduct.productname}  className='product-image  mb-3'    /><br/>
       <h6 >

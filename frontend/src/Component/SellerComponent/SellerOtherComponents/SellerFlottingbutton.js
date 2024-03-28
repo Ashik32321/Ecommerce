@@ -13,16 +13,7 @@ const SellerFlottingbutton = () => {
         e.dataTransfer.setDragImage(new Image(), 0, 0);
     };
 
-    const handleDragOver = (e) => {
-        e.preventDefault();
-    };
-
-    const handleDrop = (e) => {
-        setPosition({
-            x: e.clientX - 25,
-            y: e.clientY - 25,
-        });
-    };
+   
 
     useEffect(() => {
         const handleResize = () => {
@@ -31,7 +22,7 @@ const SellerFlottingbutton = () => {
                 setPosition({ x: window.innerWidth - 200, y: window.innerHeight - 620 });
             } else {
                 // Mobile view - set initial position to top right
-                setPosition({ x: window.innerWidth - 70, y: 110 });
+                setPosition({ x: window.innerWidth - 60, y:262 });
             }
         };
         // Call handleResize initially

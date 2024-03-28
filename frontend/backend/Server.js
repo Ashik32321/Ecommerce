@@ -38,6 +38,7 @@ const SellerForgot=require("./Postfiles/SellerForgotPassword")
 const sellerresetpassword=require("./Updatefiles/SellerResetPassword")
 const updateorder =require("./Updatefiles/updateOrders") 
 const updatetotalsales =require("./Updatefiles/UpdateTotalsales")
+const EditAddress=require("./Updatefiles/EditAddress")
 
 
 
@@ -100,6 +101,7 @@ app.use(ResetPassword);
 app.use(sellerresetpassword)
 app.use(updateorder)
 app.use(updatetotalsales)
+app.use(EditAddress)
 
 connectDb().then(() => {
   app.listen(port, () => {

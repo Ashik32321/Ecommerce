@@ -6,7 +6,7 @@ function GotoPurchaseLogin() {
   return (
     <div className='container  mt-5 border shadow-sm p-5 mb-5 bg-white rounded bg-white'>
 
-        <h3 className='text-center text-danger'> Oops!! Your Not logged in</h3>
+        <h3 className='text-center text-danger text-fluid mb-3'> Oops!! Your Not logged in</h3>
         <div  className='d-flex justify-content-center'>
           <div>
 

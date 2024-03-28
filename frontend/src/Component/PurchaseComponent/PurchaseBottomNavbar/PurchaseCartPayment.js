@@ -6,6 +6,7 @@ import {  Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import {loadStripe} from "@stripe/stripe-js"
 import BackButton from '../../OtherComponent/BackButton';
+import { RiseLoader } from 'react-spinners';
 
 
 
@@ -17,7 +18,7 @@ const PurchaseCartPayment = () => {
   const nav=useNavigate()
 
   const [isPaymentCompleted, setPaymentCompleted] = useState(false);
-  const storedDataArrayString = localStorage.getItem('products');
+  const storedDataArrayString = sessionStorage.getItem('products');
   
 
 // Parse the JSON string back to an array
@@ -25,6 +26,8 @@ const storedDataArray = JSON.parse(storedDataArrayString);
 
   const [Deliveryaddress,setDeliveryaddress]=useState([])
   const [loading, setLoading] = useState(true);
+  const [ploading, setpLoading] = useState(false);
+
 
            
        
@@ -37,7 +40,7 @@ const storedDataArray = JSON.parse(storedDataArrayString);
        .catch(error => console.error(error));
  }, []);
  
-    const userId=localStorage.getItem("userId")
+    const userId=sessionStorage.getItem("userId")
 const Address = Deliveryaddress.filter(ad => userId.includes(ad.userId));
 
 
@@ -78,11 +81,12 @@ fetch('https://ecommerce-5-74uc.onrender.com/orders', {
   .then(data => console.log('Data successfully sent to server:', data))
   .catch(error => console.error('Error:', error));
   setPaymentCompleted(true);
-  localStorage.setItem("pdone",isPaymentCompleted)
+  sessionStorage.setItem("pdone",isPaymentCompleted)
   alert('Payment successful with Cash on Delivery!');
   nav("/success")
 
     } else if (paymentOption === 'DebitCard') {
+      setpLoading(true);
        try {
           const stripe = await loadStripe("pk_test_51OcqX2SI1KcZYWZz4HtvKCIyK2BvfJ1edIB2cry3wWAkO4aNcdhHja8qPFnNJLBVQ0xECMahM1su42GJTV2byjGZ00HLO7kDdt");
           const body = {
@@ -113,7 +117,8 @@ fetch('https://ecommerce-5-74uc.onrender.com/orders', {
   .then(data => console.log('Data successfully sent to server:', data))
   .catch(error => console.error('Error:', error));
   setPaymentCompleted(true);
-  localStorage.setItem("pdone",isPaymentCompleted)
+  sessionStorage.setItem("pdone",isPaymentCompleted)
+  setLoading(false);
 
 
           if (result.error) {
@@ -147,47 +152,60 @@ fetch('https://ecommerce-5-74uc.onrender.com/orders', {
     <BackButton></BackButton>
     <div>
       <div className='container  mt-5 border shadow-sm p-1 mb-5 bg-white rounded '>
+      {loading ? (
+                    <div className="mt-5 ">
+                     <p className='text-center'>
+                      <RiseLoader color={'#0000FF'} loading={loading} size={15}  /><br/>
+                      <h6 >Loading...</h6></p>
+                        
+                  
+                    </div>
+                ) : ( <>
         <h6>Delivery Address</h6>
         <Row>
           <Col>
+        
+         
           {Address.map((DAddress) =>(
-             <div>
-             {loading ? (
-                <p>Loading...</p>
-             ) : (
-                <>
-                  <div key={DAddress._id} >
+            <div key={DAddress._id} >
+              
 
-<p>{DAddress.username}<br/>
-   {DAddress.userhno},{DAddress.uservillage}<br/>
-   {DAddress.userpincode},{DAddress.userdistrict},{DAddress.userstate}<br/>
-   phone:{DAddress.userphone} Alternative phone{DAddress.useraphone}
-  </p>
-  </div>
- 
-                </>
-             )}
-          </div>
-           
+            <p>{DAddress.username}<br/>
+               {DAddress.userhno},{DAddress.uservillage}<br/>
+               {DAddress.userpincode},{DAddress.userdistrict},{DAddress.userstate}<br/>
+               phone:{DAddress.userphone} Alternative phone{DAddress.useraphone}
+              </p>
+              </div>
+          
             
            
 
           ))}
+         
           </Col>
           <Col>
-          <p className='text-end'>
-
-          {Address.length === 0 && (
-             <Link to="/purchasedeliveryaddress" className='btn btn-primary'>ADD</Link>
+          {Address.length === 0 ?(
+            <p className='text-end'>
+             <Link to="/purchasedeliveryaddress" className='btn btn-primary '>ADD</Link>
+             </p>
         
-      ) }
+      ):(<p className='text-end'>
+      <Link to="/purchaseeditaddress" className='btn btn-primary '>Edit</Link>
+      </p>) }
        
-        </p>
         </Col>
-        </Row>
+        </Row></>)}
        
       </div>
       <div className='container  mt-5 border shadow-sm p-1 mb-5 bg-white rounded '>
+      {ploading ? (
+                    <div className="mt-5 ">
+                     <p className='text-center'>
+                      <h6 >Loading...</h6></p>
+                        
+                  
+                    </div>
+                ) : (
       <form>
         <h6> Method of Payment</h6>
 
@@ -215,6 +233,7 @@ fetch('https://ecommerce-5-74uc.onrender.com/orders', {
         <button className='btn btn-warning'   onClick={makePayment} >Make Payment</button></p>
      
       </form>
+                )}
       </div>
 
     </div>

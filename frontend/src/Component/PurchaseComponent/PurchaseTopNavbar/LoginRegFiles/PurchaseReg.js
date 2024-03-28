@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import Backbutton from "../../../OtherComponent/BackButton"
 
 function PurchaseReg() {
+    const [loading, setLoading] = useState(false);
     const [Userdetails, handleUserDetails] = useRegistration({
         username: "",
         userphone: "",
@@ -65,7 +66,7 @@ function PurchaseReg() {
                 setCPasswordAlert("Password mismatch");
                 return;
             }
-
+            setLoading(true)
             // Axios post request
             const result = await axios.post("https://ecommerce-5-74uc.onrender.com/reg", { ...Userdetails });
 
@@ -74,13 +75,17 @@ function PurchaseReg() {
             if (result.data.includes("user already registered")) {
                 // Display a message in the UI or handle as needed
                 alert("User already registered");
+                setLoading(false)
                 nav("../purchaselogin");
+               
             } else if (result.data.includes("user registered successfully")) {
                 // Display a message in the UI or handle as needed
                 alert("Registered successfully");
+                setLoading(false)
                 nav("../purchaselogin");
             } else {
                 // Handle unexpected response format
+                setLoading(false)
                 alert("Unexpected server response");
             }
         } catch (error) {
@@ -89,6 +94,7 @@ function PurchaseReg() {
 
             // Display a generic error message to the user
             // You may choose to provide more user-friendly messages
+            setLoading(false)
             alert("An error occurred. Please try again later.");
         }
     };
@@ -149,8 +155,12 @@ function PurchaseReg() {
                                 onChange={handleUserDetails}
                             />
                             <div className="text-danger">{cpasswordAlert}</div><br />
-
-                            <button type="submit" className="btn btn-primary w-100">SignUp</button>
+                            <>
+                            {loading ? (
+                  
+                  <button className="btn btn-secondary w-100">Loading...</button>
+               ) : (
+                            <button type="submit" className="btn btn-primary w-100">SignUp</button>)}</>
                         </form>
                     </div>
                 </div>

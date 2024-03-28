@@ -11,7 +11,7 @@ function SellerOrderDisplay() {
   const [orders, setOrders] = useState([]);
   const [Deliveryaddress, setDeliveryaddress] = useState([]);
   
-  const sellerphone = localStorage.getItem("sellerphone").replace(/["']/g, '');
+  const sellerphone = sessionStorage.getItem("sellerphone").replace(/["']/g, '');
 
   const [sellerdetail, setsellerdetail] = useState([]);
 
@@ -22,7 +22,7 @@ function SellerOrderDisplay() {
       .catch((error) => console.error('Error fetching products:', error));
   }, []);
   
-  const sellerId = localStorage.getItem("sellerId");
+  const sellerId = sessionStorage.getItem("sellerId");
   const SellerProfiles = sellerdetail.filter(pro => sellerId.includes(pro.sellerId));
   
   let totalsales = SellerProfiles.reduce((total, profile) => {

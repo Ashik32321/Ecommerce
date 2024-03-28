@@ -3,19 +3,23 @@ import axios from 'axios';
 import { Row, Col } from 'react-bootstrap';
 import BackButton from '../../OtherComponent/BackButton';
 import { useNavigate } from 'react-router-dom';
+import { RiseLoader } from 'react-spinners';
+
 
 function SellerOrders() {
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
   const nav =useNavigate()
   
 
   useEffect(() => {
     axios.get('https://ecommerce-5-74uc.onrender.com/getorderproducts')
-      .then((response) => setOrders(response.data))
+      .then((response) =>{setOrders(response.data);
+                          setLoading(false)} )
       .catch((error) => console.error('Error fetching orders:', error));
   }, []);
 
-  const sellerId = localStorage.getItem('sellerId');
+  const sellerId = sessionStorage.getItem('sellerId');
 
   // Filter orders based on sellerId
   const sellerOrders = orders.filter(order => order.products.some(product => product.SellerID === sellerId));
@@ -28,6 +32,17 @@ function SellerOrders() {
   return (
     <>
     <BackButton></BackButton>
+    {loading ? (
+      <div className="loder-container ">
+      <p className='text-center'>
+       <RiseLoader color={'#0000FF'} loading={loading} size={15}  /><br/>
+       <h6 >Loading...</h6></p>
+         
+   
+     </div>
+  ) : (
+    <>
+
     {sellerOrders.length === 0 ? (
       <div className='container bg-white mt-5 p-5'>
         <div className="emptyCartMessage ">
@@ -76,7 +91,7 @@ function SellerOrders() {
         ))}
       </div>
     </div>
-      )}
+      )} </>)}
     </>
   );
 }

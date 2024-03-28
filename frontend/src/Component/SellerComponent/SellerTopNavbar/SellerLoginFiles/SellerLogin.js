@@ -10,7 +10,7 @@ function SellerLogin() {
     sellerphone: "",
     sellerpassword: "",
   });
-
+  const [loading, setLoading] = useState(false);
   let isSellerLoggedIn = false;
   const nav = useNavigate();
 
@@ -30,23 +30,29 @@ function SellerLogin() {
     };
 
     try {
+      setLoading(true)
       const response = await axios.post("https://ecommerce-5-74uc.onrender.com/sellerlogin", requestBody);
 
       if (response.data.status === "success") {
         isSellerLoggedIn = true
-        localStorage.setItem("isSellerLoggedIn", isSellerLoggedIn);
-        localStorage.setItem("sellerId", JSON.stringify(response.data.sellerId));
-        localStorage.setItem("sellerphone",value.sellerphone );
+        sessionStorage.setItem("isSellerLoggedIn", isSellerLoggedIn);
+        sessionStorage.setItem("sellerId", JSON.stringify(response.data.sellerId));
+        sessionStorage.setItem("sellerphone",value.sellerphone );
        
         alert("logged in successfully")
+        setLoading(false)
         nav('../sellerhome');
       } else if (response.data.status === "password incorrect") {
         alert("The password is incorrect");
+        setLoading(false)
       } else {
+        setLoading(false)
         alert("Invalid credentials");
+
       }
     } catch (error) {
       console.error(error);
+      setLoading(false)
       alert("Server error");
     }
   };
@@ -94,8 +100,18 @@ function SellerLogin() {
             <Link to="/sellerforgotpassword"  className="text-decoration-none custom-link">ForgotPassword</Link><br/>
 
             <Link to="../sellerregister"  className="text-decoration-none custom-link">Create a new Account</Link><br /><br />
+            <>
+    {loading ? (
+     
+     
+       
+       <button className="btn btn-secondary w-100">Loading...</button>
+         
+   
+   
+  ) : (
 
-            <button type="submit" className="btn btn-primary w-100">Login</button>
+            <button type="submit" className="btn btn-primary w-100">Login</button>)}</>
           </form>
         </div>
       </div>

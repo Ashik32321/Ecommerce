@@ -6,10 +6,10 @@ import SellerFlottingbutton from '../SellerOtherComponents/SellerFlottingbutton'
 
 
 function SellerTopNavbar() {
-  const isButtonVisible =localStorage.getItem("isSellerLoggedIn")
+  const isButtonVisible =sessionStorage.getItem("isSellerLoggedIn")
 
   const logout = () => {
-    localStorage.setItem("isSellerLoggedIn", false)
+    sessionStorage.setItem("isSellerLoggedIn", false)
     alert("logged out successfuly")
     window.location.reload();
 }
