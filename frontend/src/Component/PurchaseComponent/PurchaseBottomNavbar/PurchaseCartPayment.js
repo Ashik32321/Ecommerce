@@ -190,7 +190,7 @@ fetch('https://ecommerce-5-74uc.onrender.com/orders', {
              </p>
         
       ):(<p className='text-end'>
-      <Link to="/purchaseeditaddress" className='btn btn-primary '>Edit</Link>
+      <Link to="/purchaseeditaddress" className='btn btn-primary '>change</Link>
       </p>) }
        
         </Col>

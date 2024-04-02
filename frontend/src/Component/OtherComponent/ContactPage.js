@@ -1,6 +1,6 @@
 // src/App.js
 
-import React, { useRef } from 'react';
+import React, { useRef,useState } from 'react';
 import emailjs from '@emailjs/browser';
 import BackButton from './BackButton';
 import { useNavigate } from 'react-router-dom';
@@ -8,9 +8,11 @@ import { useNavigate } from 'react-router-dom';
 function ContactPage() {
   const form = useRef();
   const navigate=useNavigate()
+  const [loading, setLoading] = useState(false);
 
   const sendEmail = (e) => {
     e.preventDefault();
+    setLoading(true)
 
     emailjs
       .sendForm('service_fbjj7bi', 'template_2j2eepg', form.current, {
@@ -19,10 +21,12 @@ function ContactPage() {
       .then(
         () => {
           alert('Your Issue have been sent ');
+          setLoading(false)
           navigate(-1)
         },
         (error) => {
-          console.log('Failed to send issue', error.text);
+          alert('Failed to send issue');
+          setLoading(false)
         },
       );
   };
@@ -43,7 +47,12 @@ function ContactPage() {
       <input type="tel" name="Phone" className='form-control' /><br/>
       <label className='form-label'>Problem</label><br/>
       <textarea name="Problem"  className='form-control'/><br/>
-      <input type="submit" value="Submit" className='btn btn-primary w-100'/>
+      <>
+                            {loading ? (
+                  
+                  <button className="btn btn-secondary w-100">Loading...</button>
+               ) : (
+                            <button type="submit" className="btn btn-primary w-100">Submit</button>)}</>
     </form>
       
       

@@ -171,7 +171,7 @@ const PurchaseBuyPayment = () => {
              </p>
         
       ):(<p className='text-end'>
-      <Link to="/purchaseeditaddress" className='btn btn-primary '>Edit</Link>
+      <Link to="/purchaseeditaddress" className='btn btn-primary '>Change</Link>
       </p>) }
        
         </Col>

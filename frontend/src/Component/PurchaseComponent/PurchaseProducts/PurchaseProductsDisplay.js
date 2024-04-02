@@ -77,7 +77,7 @@ function PurchaseProductDisplay() {
           <div className="emptyCartMessage ">
             <img
               className="emptyCartImage"
-              src="./Img/Stocked.jpeg"
+              src="./Images/Stocked.jpeg"
               alt="Out of stock"
             />
             <p className='text-danger fw-bold'>Product is Out of Stock</p><br />

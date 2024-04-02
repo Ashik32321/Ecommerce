@@ -22,7 +22,7 @@ const SearchDisplay = () => {
             {storedDataArray.length === 0 ? (
                 <div className="searchitemMessage  container  mt-5 shadow-sm p-5 mb-5 bg-white rounded">
                     <img
-                        className="searchitemImage"
+                        className="emptyCartImage"
                         src="./Images/emptyproduct.png"
                         alt="searchitem"
                     />

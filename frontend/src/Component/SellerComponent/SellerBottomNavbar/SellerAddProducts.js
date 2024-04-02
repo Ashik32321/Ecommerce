@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+
 import BackButton from '../../OtherComponent/BackButton';
-import { RiseLoader } from 'react-spinners';
+
 
 function SellerAddProducts() {
   const [product, setProduct] = useState({
@@ -17,7 +17,7 @@ function SellerAddProducts() {
     isdelivered:false,
   });
   const [loading, setLoading] = useState(false); // Corrected
-  const nav = useNavigate();
+ 
  
   const SellerID = sessionStorage.getItem("sellerId");
   const productquantity = 1;
@@ -47,17 +47,28 @@ function SellerAddProducts() {
     formData.append('isshipped', product.isshipped);
     formData.append('isdelivered', product.isdelivered);
 
-    axios.post('https://ecommerce-5-74uc.onrender.com/addproducts', formData, {
+    axios.post('http://localhost:3001/addproducts', formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         },
     })
-    .then(response => {
+    .then(() => {
         setLoading(false);
+        setProduct({
+          productname: '',
+          productdescription: '',
+          productprice:'',
+          productcategory:'',
+          productimage: null,
+          productstocked:true,
+          isprocessed:false,
+          isshipped:false,
+          isdelivered:false,
+      });
         alert("Product added successfully");
-        nav("/sellerhome");
+       
     })
-    .catch(error => {
+    .catch(() => {
         alert('Error adding product');
     });
 };
@@ -67,14 +78,7 @@ function SellerAddProducts() {
   return (
     <>
       <BackButton />
-      {loading ? (
-        <div className="loder-container ">
-          <p className='text-center'>
-            <RiseLoader color={'#0000FF'} loading={loading} size={15} /><br/>
-            <h6 >Loading...</h6>
-          </p>
-        </div>
-      ) : (
+     
         <div className='login-container border border-dark  mt-3 bg-white p-3'>
           <div className='mt-3 mb-3'>
             <h4 className='text-primary text-center'>Add Product</h4>
@@ -131,12 +135,17 @@ function SellerAddProducts() {
                         onChange={handleImageChange} 
                         required
                         className='form-control'  /><br />
-                <button type="submit" className='btn btn-primary w-100'>Add Product</button>
+                  <>
+                            {loading ? (
+                  
+                  <button className="btn btn-secondary w-100">Loading...</button>
+               ) : (
+                            <button type="submit" className="btn btn-primary w-100">Add Product</button>)}</>
               </form>
             </div>
           </div>
         </div>
-      )}
+     
     </>
   );
 }

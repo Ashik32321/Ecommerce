@@ -4,6 +4,7 @@ import SellerBottomNavbar from '../SellerBottomNavbar/SellerBottomNavbar'
 import SellerProduct from '../SellerProducts/SellerProduct'
 import SellerProfile from '../SellerProfile/SellerProfile'
 import SellerFooter from './SellerFooter'
+import SellerHomeMessage from "./SellerHomeMessage"
 
 
 
@@ -17,14 +18,14 @@ function SellerHome() {
       
           <SellerTopNavbar/>
         
-        {isButtonVisible === "true" && (
+        {isButtonVisible === "true" ? (
           <div>
           <SellerProfile/>
          <SellerProduct/>
          <SellerFooter/>
          
          </div>
-      ) }
+      ):(<SellerHomeMessage/>) }
         
         
       

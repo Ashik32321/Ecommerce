@@ -124,7 +124,7 @@ function SellerOrderDisplay() {
                       </p>
                       {sellerOrder.processed === false && (
                         <button
-                          className="btn btn-warning me-1 mt-2"
+                          className="btn btn-primary me-1 mt-2"
                           onClick={() => updateProcessed(SellerOrderproduct._id)}
                         >
                           Accept
@@ -134,7 +134,7 @@ function SellerOrderDisplay() {
                     
                           
                         <button
-                          className="btn btn-warning me-1 mt-2"
+                          className="btn btn-primary me-1 mt-2"
                           onClick={() => updateshipped(SellerOrderproduct._id)}
                         >
                           Mark as Shipped
@@ -143,7 +143,7 @@ function SellerOrderDisplay() {
                       )}
                       {sellerOrder.shipped === true && sellerOrder.delivered === false && (
                         <button
-                          className="btn btn-warning me-1 mt-2"
+                          className="btn btn-primary me-1 mt-2"
                           onClick={() => updatedelivered(SellerOrderproduct._id)}
                         >
                           Mark as Delivered
