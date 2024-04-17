@@ -33,7 +33,6 @@ const nav=useNavigate()
 
 
 const total=location.state.Mproduct.productprice*value
-sessionStorage.setItem("totalprice",total)
 sessionStorage.setItem("quantity",value)
 
 

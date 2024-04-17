@@ -7,6 +7,8 @@ import Backbutton from "../../../OtherComponent/BackButton"
 
 function PurchaseForgotPassword() {
   const [loading, setLoading] = useState(false);
+  const [disable, setdisable] = useState(false);
+  const [phonealert ,setPhoneAlert] =useState("")
     const navigate =useNavigate()
     const [value, setValue] = useState({
       phone: '',
@@ -16,10 +18,16 @@ function PurchaseForgotPassword() {
   
     const handleOtp = async (e) => {
       e.preventDefault();
-    
+      setdisable(true)
+      setPhoneAlert("")
+      if(value.phone === ""){
+        setPhoneAlert("Enter PhoneNumber")
+        setdisable(false)
+      }
+      else{
       try {
         // Make an HTTP request to the server
-        const response = await axios.post('https://ecommerce-5-74uc.onrender.com/sellerforgot-password', { phone: value.phone });
+        const response = await axios.post('https://ecommerce-5-74uc.onrender.com/forgot-password', { phone: value.phone });
     
         if (response.status === 201) {
          
@@ -32,17 +40,21 @@ function PurchaseForgotPassword() {
         } else if (response.status === 400) {
           console.log('User not registered');
           navigate("/purchasereg")
+          setdisable(false)
            
         } else {
           alert('Unexpected response:');
+          setdisable(false)
           // Handle other unexpected responses
         }
       } catch (error) {
         alert('unable to send otp:');
         console.log(error)
+        setdisable(false)
+       
         
         // Handle errors as needed
-      }
+      }}
     };
     
     
@@ -50,6 +62,7 @@ function PurchaseForgotPassword() {
     const handleSubmit = async (e) => {
       e.preventDefault();
       setLoading(true)
+     
     
       try {
         const result = await axios.post("https://ecommerce-5-74uc.onrender.com/validateotp", { ...value });
@@ -95,7 +108,7 @@ function PurchaseForgotPassword() {
                   required
                 />
               </div>
-              <br />
+              <div className="text-danger text-center">{phonealert}</div><br />
     
               <label htmlFor='otp'>Enter the OTP</label>
               <br />
@@ -110,7 +123,7 @@ function PurchaseForgotPassword() {
                   required
                   onChange={(e) => setValue({ ...value, otp: e.target.value })}
                 />
-                <button className='btn btn-primary' onClick={handleOtp}>
+                <button className='btn btn-primary' onClick={handleOtp} disabled={disable}>
                   Send OTP
                 </button>
               </div>

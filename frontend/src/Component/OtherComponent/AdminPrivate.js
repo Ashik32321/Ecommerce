@@ -1,12 +1,11 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
- // Import a library to decode JWT tokens
 
-function PurchasePrivate({ children }) {
+function AdminPrivate({ children }) {
     // Retrieve the JWT token from local storage
-    const token = sessionStorage.getItem('token');
-    
+    const token = sessionStorage.getItem('adminToken');
+
     // Function to verify the token's validity and expiration
     const isTokenValid = (token) => {
         try {
@@ -22,9 +21,9 @@ function PurchasePrivate({ children }) {
 
     // Check if the token is valid
     const isAuthenticated = token && isTokenValid(token);
-    
-    // Render children if the user is authenticated, otherwise redirect to login page
-    return isAuthenticated ? children : <Navigate to="/gotopurchaselogin" />;
+
+    // Render children if the user is authenticated, otherwise redirect to admin login page
+    return isAuthenticated ? children : <Navigate to="/admingotologin" />;
 }
 
-export default PurchasePrivate;
+export default AdminPrivate;

@@ -16,7 +16,7 @@ const SellerProduct= () => {
 
 
   useEffect(() => {
-    axios.get('https://ecommerce-5-74uc.onrender.com/getproducts')
+    axios.get('http://localhost:3001/getproducts')
       .then((response) => {setProducts(response.data);
                             setLoading(false);
       })
@@ -27,8 +27,7 @@ const SellerProduct= () => {
   const sellerId=sessionStorage.getItem("sellerId")
   const SellerProducts = products.filter(product => sellerId.includes(product.SellerID));
 
-  const Productlength=SellerProducts.length
-  sessionStorage.setItem("Productlength",Productlength)
+  
 
   const moveToDisplay =(Mproduct)=>{
     nav("/sellerproductdisplay",{state:{Mproduct:Mproduct}})

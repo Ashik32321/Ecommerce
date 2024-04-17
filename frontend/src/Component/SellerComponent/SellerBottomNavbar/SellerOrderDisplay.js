@@ -17,7 +17,7 @@ function SellerOrderDisplay() {
 
   useEffect(() => {
     // Fetch all products from the server on component mount
-    axios.get('https://ecommerce-5-74uc.onrender.com/getsellerprofile')
+    axios.get('http://localhost:3001/getsellerprofile')
       .then((response) => setsellerdetail(response.data))
       .catch((error) => console.error('Error fetching products:', error));
   }, []);
@@ -32,7 +32,7 @@ function SellerOrderDisplay() {
 
   useEffect(() => {
     axios
-      .get('https://ecommerce-5-74uc.onrender.com/getorderproducts')
+      .get('http://localhost:3001/getorderproducts')
       .then((response) => setOrders(response.data))
       .catch((error) => console.error('Error fetching orders:', error));
   }, []);
@@ -43,7 +43,7 @@ function SellerOrderDisplay() {
 
   useEffect(() => {
     axios
-      .get('https://ecommerce-5-74uc.onrender.com/getdeliveryaddress')
+      .get('http://localhost:3001/getdeliveryaddress')
       .then((response) => {
         setDeliveryaddress(response.data);
       })
@@ -55,7 +55,7 @@ function SellerOrderDisplay() {
 
   const updateProcessed = async (_id) => {
     try {
-      await axios.put(`https://ecommerce-5-74uc.onrender.com/updateProcessed/${_id}`);
+      await axios.put(`http://localhost:3001/updateProcessed/${_id}`);
       alert('Order accepted');
       window.location.reload();
     } catch (error) {
@@ -65,7 +65,7 @@ function SellerOrderDisplay() {
 
   const updateshipped = async (_id) => {
     try {
-      await axios.put(`https://ecommerce-5-74uc.onrender.com/updateshipped/${_id}`);
+      await axios.put(`http://localhost:3001/updateshipped/${_id}`);
       alert('Updated order as shipped');
       window.location.reload();
     } catch (error) {
@@ -77,7 +77,7 @@ function SellerOrderDisplay() {
     totalsales = parseInt(totalsales, 10) + 1;
 
     try {
-        await axios.put(`https://ecommerce-5-74uc.onrender.com/updatedelivered/${_id}`);
+        await axios.put(`http://localhost:3001/updatedelivered/${_id}`);
         
     } catch (error) {
         console.error('Error updating delivered:', error.message);
@@ -85,7 +85,7 @@ function SellerOrderDisplay() {
 
     try {
     
-      const response = await axios.put(`https://ecommerce-5-74uc.onrender.com/updatedsalesvalue/${sellerphone}`, { totalsales });
+      const response = await axios.put(`http://localhost:3001/updatedsalesvalue/${sellerphone}`, { totalsales });
       console.log('Server response:', response.data);
       window.location.reload();
        // Log the server response

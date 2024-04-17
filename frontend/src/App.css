@@ -2,3 +2,28 @@ body{
     background-color: rgb(224, 249, 250);
 
 }  
+.info-container {
+    width: 100%;
+    /* This will center the container horizontally */
+}
+@media (min-width:500px) {
+    .info-container{
+        width: 100%;
+       }
+    
+}
+
+.adminmargin{
+    margin-top: 140px;
+   
+    
+}
+   
+@media (min-width:500px) {
+    .adminmargin{
+
+       margin-top: 10px;
+       
+    
+   }
+}

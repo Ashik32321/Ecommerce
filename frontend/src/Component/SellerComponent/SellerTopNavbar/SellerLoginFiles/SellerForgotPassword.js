@@ -1,133 +1,137 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import "./CssFiles/SellerLoginReg.css"
-import BackButton from "../../../OtherComponent/BackButton";
+import './CssFiles/SellerLoginReg.css';
+import BackButton from '../../../OtherComponent/BackButton';
+
 function SellerForgotPassword() {
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate()
-  const [value, setValue] = useState({
-    phone: Number,
-    otp: '',
-  });
-  sessionStorage.setItem("sellerresetphone", value.phone)
+    const [loading, setLoading] = useState(false);
+    const [disable, setDisable] = useState(false);
+    const [phoneAlert, setPhoneAlert] = useState('');
+    const navigate = useNavigate();
 
-  const handleOtp = async (e) => {
-    e.preventDefault();
+    const [formData, setFormData] = useState({
+        phone: '',
+        otp: ''
+    });
 
-    try {
-      // Make an HTTP request to the server
-      const response = await axios.post('https://ecommerce-5-74uc.onrender.com/sellerforgot-password', { phone: value.phone });
+    // Store phone in session storage for later use
+    sessionStorage.setItem('sellerresetphone', formData.phone);
 
-      if (response.status === 201) {
+    // Handler for sending OTP
+    const handleSendOtp = async (e) => {
+        e.preventDefault();
+        setDisable(true);
 
+        // Validate phone number
+        if (!formData.phone) {
+            setPhoneAlert('Enter a valid phone number');
+            setDisable(false);
+            return;
+        } else {
+            setPhoneAlert('');
+        }
 
+        try {
+            const response = await axios.post('http://localhost:3001/sellerforgot-password', { phone: formData.phone });
+            if (response.status === 201) {
+                alert('OTP has been sent to your mobile phone');
+            } else if (response.status === 400) {
+                console.log('User not registered');
+                navigate('/sellerregister');
+            } else {
+                alert('Unexpected response from server');
+            }
+        } catch (error) {
+            console.error('Error sending OTP:', error);
+            alert('Unable to send OTP');
+        } finally {
+            setDisable(false);
+        }
+    };
 
+    // Handler for form submission
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
 
-        alert("Otp has sent to your mobilephone")
+        try {
+            const response = await axios.post('http://localhost:3001/sellervalidateotp', formData);
+            if (response.data.status === 'success') {
+                navigate('/sellerresetpassword');
+            } else if (response.data.status === 'otp mismatch') {
+                alert('OTP mismatch');
+            } else {
+                alert('Invalid credentials');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Server error. Please try again later.');
+        } finally {
+            setLoading(false);
+        }
+    };
 
-        // You can add additional logic or redirection here
-      } else if (response.status === 400) {
-        console.log('User not registered');
-        navigate("/sellerregister")
+    // Handler for form data changes
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
+    };
 
-      } else {
-        alert('Unexpected response:');
-        // Handle other unexpected responses
-      }
-    } catch (error) {
-      alert('unable to send otp:');
-      console.log(error)
+    return (
+        <>
+            <BackButton />
+            <div className='login-container border mt-5 p-5 border-dark bg-white'>
+                <div className='d-flex justify-content-center'>
+                    <form onSubmit={handleSubmit}>
+                        <label htmlFor='phone' className='form-label'>Phone</label>
+                        <div className='input-group'>
+                            <span className='btn btn-primary'>+91</span>
+                            <input
+                                type='tel'
+                                name='phone'
+                                id='phone'
+                                className='form-control'
+                                pattern='[0-9]{10}'
+                                value={formData.phone}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </div>
+                        <div className='text-danger text-center'>{phoneAlert}</div><br />
 
-      // Handle errors as needed
-    }
-  };
+                        <label htmlFor='otp'>Enter the OTP</label>
+                        <div className='input-group'>
+                            <input
+                                type='text'
+                                name='otp'
+                                id='otp'
+                                className='form-control'
+                                pattern='[0-9]{4}'
+                                value={formData.otp}
+                                required
+                                onChange={handleInputChange}
+                            />
+                            <button
+                                className='btn btn-primary'
+                                disabled={disable}
+                                onClick={handleSendOtp}
+                            >
+                                Send OTP
+                            </button>
+                        </div>
 
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true)
-
-    try {
-      const result = await axios.post("https://ecommerce-5-74uc.onrender.com/sellervalidateotp", { ...value });
-      console.log(result);
-
-      if (result.data.status === "success") {
-        setLoading(false)
-        navigate("/sellerresetpassword")
-
-      } else if (result.data.status === "otp mismatch") {
-
-        alert("otp mismatch");
-        setLoading(false)
-
-      } else {
-        alert("Invalid credentials");
-        setLoading(false)
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Server error");
-      setLoading(false)
-    }
-  };
-
-  return (
-    <>
-      <BackButton />
-      <div className='login-container border mt-5 p-5 border-dark bg-white'>
-        <div className='d-flex justify-content-center'>
-          <form onSubmit={handleSubmit}>
-            <label htmlFor='phone' className='foem-label'>
-              Phone
-            </label>
-            <br />
-            <div className='input-group'>
-              <span className='btn btn-primary'>+91</span>
-              <input
-                type='tel'
-                name='phone'
-                id='phone'
-                className='form-control'
-                pattern='[0-9]{10}'
-                value={value.phone}
-                onChange={(e) => setValue({ ...value, phone: e.target.value })}
-                required
-              />
+                        <br />
+                        {loading ? (
+                            <button type='submit' className='btn btn-secondary w-100' disabled>Loading...</button>
+                        ) : (
+                            <button type='submit' className='btn btn-primary w-100'>Submit</button>
+                        )}
+                    </form>
+                </div>
             </div>
-            <br />
-
-            <label htmlFor='otp'>Enter the OTP</label>
-            <br />
-            <div className='input-group'>
-              <input
-                type='text'
-                name='otp'
-                id='otp'
-                className='form-control'
-                pattern='[0-9]{4}'
-                value={value.otp}
-                required
-                onChange={(e) => setValue({ ...value, otp: e.target.value })}
-              />
-              <button className='btn btn-primary' onClick={handleOtp}>
-                Send OTP
-              </button>
-            </div>
-            <br />
-            <>
-              {loading ? (
-                <button className="btn btn-secondary w-100">Loading...</button>
-              ) : (
-
-                <button type='submit' className='btn btn-primary w-100'>
-                  Submit
-                </button>)}</>
-          </form>
-        </div>
-      </div>
-    </>
-  );
+        </>
+    );
 }
 
 export default SellerForgotPassword;

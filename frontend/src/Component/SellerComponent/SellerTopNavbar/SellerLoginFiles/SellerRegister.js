@@ -39,46 +39,56 @@ const [value,setvalue]=useState({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     if (sellerDetails.sellerpassword.length < 8) {
-      alert("password must be at least 8 characters");
+        alert("Password must be at least 8 characters.");
+        return;
     } else if (sellerDetails.sellerpassword !== sellerDetails.sellercpassword) {
-      alert("password mismatch");
-    } else {
-      setLoading(true)
-      const formData = new FormData();
-      formData.append('sellername', sellerDetails.sellername);
-      formData.append('sellershopname', sellerDetails.sellershopname);
-      formData.append('sellerphone', sellerDetails.sellerphone);
-      formData.append('sellergst', sellerDetails.sellergst);
-      formData.append('sellerpassword', sellerDetails.sellerpassword);
-      formData.append('sellerlogo', value.sellerlogo);
-      formData.append("sellerId",sellerDetails.sellerId)
-      formData.append("totalsales",0)
-      sessionStorage.setItem("selleraddressId",sellerDetails.sellerId)
-
-      axios.post("https://ecommerce-5-74uc.onrender.com/sellerregister", formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-        .then(result => {
-          console.log(result);
-          if (result.data === "user already registered") {
-            alert("seller already registered ");
-            setLoading(false)
-            nav("/sellerlogin");
-          } else if (result.data === "user registered successfully") {
-            setLoading(false)
-            nav("/selleraddress");
-          }
-        })
-        .catch(err => {
-          console.log(err);
-          setLoading(false)
-          alert("Server error");
-        });
+        alert("Password mismatch.");
+        return;
     }
-  };
+
+    setLoading(true);
+    
+    const formData = new FormData();
+    formData.append('sellername', sellerDetails.sellername);
+    formData.append('sellershopname', sellerDetails.sellershopname);
+    formData.append('sellerphone', sellerDetails.sellerphone);
+    formData.append('sellergst', sellerDetails.sellergst);
+    formData.append('sellerpassword', sellerDetails.sellerpassword);
+    formData.append('sellerlogo', value.sellerlogo);
+    formData.append('sellerId', sellerDetails.sellerId);
+    formData.append('totalsales', 0);
+    
+    sessionStorage.setItem('selleraddressId', sellerDetails.sellerId);
+
+    try {
+        const result = await axios.post('http://localhost:3001/sellerregister', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+        
+        if (result.data.status === 'fail' && result.data.message === 'Seller already registered') {
+            alert('Seller already registered. Please use a different phone number.');
+            nav('/sellerlogin');
+        } else if (result.data.status === 'success' && result.data.message === 'Seller registered successfully') {
+            nav('/selleraddress');
+        } else {
+            alert('Unexpected response from the server.');
+        }
+    } catch (error) {
+        if (error.response && error.response.status === 409) {
+            alert('Seller already registered. Please use a different phone number.');
+        } else {
+            alert('Server error. Please try again later.');
+        }
+    } finally {
+        setLoading(false);
+    }
+};
+
+
 
   return (
     <>

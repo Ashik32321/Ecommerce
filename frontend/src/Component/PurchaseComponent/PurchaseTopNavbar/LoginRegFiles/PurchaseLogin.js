@@ -28,30 +28,31 @@ function PurchaseLogin() {
     // Authentication and  Login
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true)
-
+        setLoading(true);
+    
         try {
-            const result = await axios.post("https://ecommerce-5-74uc.onrender.com/login", { ...Userdetails });
-            console.log(result);
-
-            if (result.data.status === "success") {
-                sessionStorage.setItem("userlogedin", JSON.stringify(true));
-                sessionStorage.setItem("userId", JSON.stringify(result.data.userId));
-                setLoading(false)
-                nav('../');
-            } else if (result.data.status === "passwordIncorrect") {
-                setLoading(false)
-                alert("The password is incorrect");
+            const response = await axios.post("http://localhost:3001/login",Userdetails);
+            
+            if (response.data.status === 'success') {
+                // Store the JWT token in local storage
+                alert("logged in Successfully")
+                sessionStorage.setItem('token', response.data.token);
+                sessionStorage.setItem("userId", JSON.stringify(response.data.userId));
+    
+                // Redirect to a different page (e.g., home page)
+                nav('/');
             } else {
-                setLoading(false)
-                alert("Invalid credentials");
+                // Handle login failure
+                alert('Login failed. Please check your credentials.');
             }
         } catch (error) {
-            console.error("Error:", error);
-            setLoading(false)
-            alert("Server error");
+            console.error('Error during login:', error);
+            alert('Server error. Please try again later.');
+        } finally {
+            setLoading(false);
         }
     };
+    
     return (
         <>
             <Backbutton />

@@ -47,7 +47,7 @@ function SellerAddProducts() {
     formData.append('isshipped', product.isshipped);
     formData.append('isdelivered', product.isdelivered);
 
-    axios.post('https://ecommerce-5-74uc.onrender.com/addproducts', formData, {
+    axios.post('http://localhost:3001/addproducts', formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         },

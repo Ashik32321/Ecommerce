@@ -1,51 +1,50 @@
-import "bootstrap/dist/css/bootstrap.min.css"
-import React, { useState } from 'react';
+import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
-import "../PurchaseCssFiles/PurchaseTopNavbar.css"
+import "../PurchaseCssFiles/PurchaseTopNavbar.css";
 import FlottingButton from "../PurchaseOtherComponent/FlottingButton";
 import '../PurchaseCssFiles/FlottingButton.css';
 
-
 function TopNavbar() {
-    let  isButtonVisible =useState("false")
-    isButtonVisible = sessionStorage.getItem("userlogedin");
+    const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState('');
-    const nav = useNavigate()
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-
-
-
+    // Check for JWT token in local storage to determine login status
+    useEffect(() => {
+        const token = sessionStorage.getItem("token");
+        setIsLoggedIn(!!token);
+    }, []);
 
     const handleSearch = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await axios.get(`https://ecommerce-5-74uc.onrender.com/search?q=${searchQuery}`);
+            const response = await axios.get(`http://localhost:3001/search?q=${searchQuery}`);
 
-            let items = response.data
-
+            const items = response.data;
             const dataArrayString = JSON.stringify(items);
-            sessionStorage.setItem("searchitem", dataArrayString)
-            nav("/searchdisplay")
-
-
+            sessionStorage.setItem("searchitem", dataArrayString);
+            navigate("/searchdisplay");
         } catch (error) {
             alert('Error searching items');
             // Handle error, display an error message to the user, etc.
         }
     };
 
-
-    const logout = () => {
-        sessionStorage.setItem("userlogedin", false)
-        alert("logged out successfuly")
-        window.location.reload();
-    }
-
+    const handleLogout = () => {
+        // Remove the JWT token from local storage
+        sessionStorage.removeItem("token");
+        alert("Logged out successfully");
+        // Set isLoggedIn state to false
+        setIsLoggedIn(false);
+        // Optionally, redirect to the login page or refresh the page
+        
+    };
 
     return (
         <Navbar fixed="top" expand="lg" className="bg-white">
@@ -68,22 +67,17 @@ function TopNavbar() {
                     </div>
                 </Form>
 
-               
-
-                  {isButtonVisible === "true" ? (
+                {isLoggedIn ? (
                     <>
-                    <button onClick={logout} className='btn  btn-danger mt-2 lbtn'>Logout</button>
-                    <FlottingButton position="floating-button-bottom-right"/>
+                        <button onClick={handleLogout} className='btn btn-danger mt-2 lbtn'>Logout</button>
+                        <FlottingButton position="floating-button-bottom-right" />
                     </>
-                    ) : (
-                        <Link to="/purchaselogin" className='btn btn-success  mt-2 lbtn'>Login</Link>)}
-
-
-               
+                ) : (
+                    <Link to="/purchaselogin" className='btn btn-success mt-2 lbtn'>Login</Link>
+                )}
             </Container>
         </Navbar>
     );
 }
 
 export default TopNavbar;
-

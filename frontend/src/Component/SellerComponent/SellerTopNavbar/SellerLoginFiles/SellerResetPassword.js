@@ -7,8 +7,8 @@ import "./CssFiles/SellerLoginReg.css"
 function SellerResetPassword() {
   const [loading, setLoading] = useState(false);
   const [value, setValue] = useState({
-    userpassword: '',
-    usercpassword: '',
+    sellerpassword: '',
+    sellercpassword: '',
   });
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
@@ -24,13 +24,13 @@ function SellerResetPassword() {
     e.preventDefault();
   
     // Password confirmation check
-    if(value.userpassword.length <8)
+    if(value.sellerpassword.length <8)
     {
       setError('Password should be 8 character.');
       return;
 
     }
-    else if (value.userpassword !== value.usercpassword) {
+    else if (value.sellerpassword !== value.sellercpassword) {
       setError('Passwords do not match.');
       return;
     }
@@ -40,9 +40,9 @@ function SellerResetPassword() {
     
   
       setLoading(true)
-        const resetResponse = await axios.put('https://ecommerce-5-74uc.onrender.com/sellerresetpassword', {
+        const resetResponse = await axios.put('http://localhost:3001/sellerresetpassword', {
             sellerphone: sellerphone,
-            sellerpassword: value.userpassword,
+            sellerpassword: value.sellerpassword,
         });
   
         if (resetResponse.status === 200) {
@@ -69,16 +69,16 @@ function SellerResetPassword() {
         <div>
           <h4 className='text-primary text-center'>Reset Password</h4>
 
-          <label htmlFor='userpassword' className='form-label'>
+          <label htmlFor='sellerpassword' className='form-label'>
             New Password
           </label>
           <div className='input-group'>
             <input
               className='form-control'
               type={showPassword ? 'text' : 'password'}
-              name='userpassword'
-              value={value.userpassword}
-              onChange={(e) => setValue({ ...value, userpassword: e.target.value })}
+              name='sellerpassword'
+              value={value.sellerpassword}
+              onChange={(e) => setValue({ ...value, sellerpassword: e.target.value })}
               required
             />
             <button type='button' className='btn btn-primary' onClick={togglePasswordVisibility}>
@@ -90,9 +90,9 @@ function SellerResetPassword() {
           <input
             type='password'
             className='form-control mb-3'
-            name='usercpassword'
-            value={value.usercpassword}
-            onChange={(e) => setValue({ ...value, usercpassword: e.target.value })}
+            name='sellercpassword'
+            value={value.sellercpassword}
+            onChange={(e) => setValue({ ...value, sellercpassword: e.target.value })}
             required
           />
 

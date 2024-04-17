@@ -1,17 +1,12 @@
 import React from 'react';
-
 import { useNavigate } from "react-router-dom"
 import { Container, Row, Col } from 'react-bootstrap';
 import "../PurchaseCssFiles/SearchDisplay.css"
 import BackButton from '../../OtherComponent/BackButton';
-
-
 const SearchDisplay = () => {
-
     const nav = useNavigate()
     const storedDataArrayString = sessionStorage.getItem('searchitem');
     const storedDataArray = JSON.parse(storedDataArrayString);
-
     const movetobuy = (Mproduct) => {
         nav("/productdisplay", { state: { Mproduct: Mproduct } })
     }

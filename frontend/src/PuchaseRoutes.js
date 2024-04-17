@@ -27,6 +27,13 @@ import SearchDisplay from './Component/PurchaseComponent/PurchaseTopNavbar/Searc
 import PurchaseCancel from './Component/PurchaseComponent/PurchaseOtherComponent/PurchaseCancel'
 import ContactPage from './Component/OtherComponent/ContactPage'
 import PurchaseEditAddress from './Component/PurchaseComponent/PurchaseProducts/PurchaseEditAddress';
+import AdminLogin from './Component/OtherComponent/AdminLogin';
+import SellerInfo from './Component/OtherComponent/SellerInfo';
+import InformationPage from './Component/OtherComponent/InformationPage';
+import UserInfo from './Component/OtherComponent/UserInfo';
+import AdminPrivate from './Component/OtherComponent/AdminPrivate';
+import AdminGotologin from './Component/OtherComponent/AdminGotologin';
+import AdminReviewPage from './Component/OtherComponent/AdminReviewPage';
 
 
 
@@ -36,7 +43,7 @@ function LoadingComponent({ children }) {
   // Simulate loading time, set loading to false after 1.5 seconds
   setTimeout(() => {
     setLoading(false);
-  }, 1500);
+  }, 500);
 
   return loading ? (
     <div className="loder-container ">
@@ -81,7 +88,13 @@ function PuchaseRoutes() {
             <Route element={<LoadingComponent><PurchasePrivate><PurchaseCancel/></PurchasePrivate></LoadingComponent>} path="cancel"></Route>
             <Route element={<LoadingComponent><ContactPage/></LoadingComponent>} path="/contactpage"></Route>
             <Route element={<LoadingComponent><PurchasePrivate><PurchaseEditAddress/></PurchasePrivate></LoadingComponent>} path="/purchaseeditaddress"></Route>
-
+            <Route element={<LoadingComponent><AdminLogin/></LoadingComponent>} path='/adminlogin'/>
+            <Route element={<LoadingComponent><AdminPrivate><SellerInfo/></AdminPrivate></LoadingComponent>}  path="/sellerinfo"></Route>
+            <Route element={<LoadingComponent><AdminPrivate><InformationPage/></AdminPrivate></LoadingComponent>} path="/informationpage"></Route>
+            <Route element={<LoadingComponent><AdminPrivate><UserInfo/></AdminPrivate></LoadingComponent>}  path="/userinfo"> </Route>
+            
+            <Route element={<LoadingComponent><AdminPrivate><AdminReviewPage/></AdminPrivate></LoadingComponent>} path="/adminreviewpage"></Route>
+            <Route element={<LoadingComponent><AdminGotologin/></LoadingComponent>} path="/admingotologin"></Route>
 
             
         </Routes>

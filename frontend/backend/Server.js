@@ -39,6 +39,8 @@ const sellerresetpassword=require("./Updatefiles/SellerResetPassword")
 const updateorder =require("./Updatefiles/updateOrders") 
 const updatetotalsales =require("./Updatefiles/UpdateTotalsales")
 const EditAddress=require("./Updatefiles/EditAddress")
+const AdminLogin =require("./Postfiles/AdminLogin")
+const getuser =require("./Getfiles/GetUser")
 
 
 
@@ -73,6 +75,7 @@ app.use(Checkout);
 app.use(Orderdetail);
 app.use(password)
 app.use(SellerForgot)
+app.use(AdminLogin)
 
 
 
@@ -88,6 +91,7 @@ app.use(getdeliveryaddress);
 app.use(getsellerprofile);
 app.use(GetSearch);
 app.use(getorderproducts);
+app.use(getuser);
 
 
 

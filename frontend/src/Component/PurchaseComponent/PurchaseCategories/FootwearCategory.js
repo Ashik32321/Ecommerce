@@ -14,7 +14,7 @@ function FootwearCategory() {
 
     useEffect(() => {
         // Fetch footwear products from the server
-        axios.get('https://ecommerce-5-74uc.onrender.com/getfootwearproducts')
+        axios.get('http://localhost:3001/getfootwearproducts')
             .then(response => {
                 setFootProducts(response.data);
                 setLoading(false); // Set loading to false when data is fetched

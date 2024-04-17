@@ -9,6 +9,7 @@ function GotoPurchaseLogin() {
         <h3 className='text-center text-danger text-fluid mb-3'> Oops!! Your Not logged in</h3>
         <div  className='d-flex justify-content-center'>
           <div>
+            
 
         <button onClick={()=>nav("/purchaselogin") }  className="btn btn-primary ">Login</button><br/><br/>
         <button onClick={()=>nav("/") }  className="btn  "> home</button>

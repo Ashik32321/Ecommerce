@@ -1,6 +1,6 @@
 const mongoose= require("mongoose")
 
-const ProjectSchema = new mongoose.Schema({
+const BuyerSchema = new mongoose.Schema({
 
         userId:String ,
         username:String,
@@ -10,6 +10,6 @@ const ProjectSchema = new mongoose.Schema({
  
 })
 
-const Project = mongoose.model("Register",ProjectSchema)
+const Buyer = mongoose.model("Register",BuyerSchema)
 
-module.exports = Project
+module.exports = Buyer

@@ -9,7 +9,8 @@ function PurchaseFooter() {
       <Row className="justify-content-center text-center py-5">
         <Col md={3} sm={6} xs={12} className="mb-4">
           <h5><u>About</u></h5>
-          <Link to="/contactpage" className="text-decoration-none ">Contact us</Link>
+          <Link to="/contactpage" className="text-decoration-none ">Contact us</Link><br/>
+          <Link to="/AdminLogin" className="text-decoration-none ">Admin Login</Link>
         </Col>
 
         <Col md={3} sm={6} xs={12} className="mb-4">

@@ -7,8 +7,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 function SellerProfile() {
 
   const [profile, setProfile] = useState([]);
-  const totalproducts = sessionStorage.getItem("Productlength")
   const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState([]);
 
 
 
@@ -16,7 +16,7 @@ function SellerProfile() {
 
   useEffect(() => {
     // Fetch all products from the server on component mount
-    axios.get('https://ecommerce-5-74uc.onrender.com/getsellerprofile')
+    axios.get('http://localhost:3001/getsellerprofile')
       .then((response) => {
         setProfile(response.data)
         setLoading(false)
@@ -26,6 +26,27 @@ function SellerProfile() {
 
   const sellerId = sessionStorage.getItem("sellerId")
   const SellerProfiles = profile.filter(pro => sellerId.includes(pro.sellerId));
+
+
+  
+  
+ 
+
+
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/getproducts')
+      .then((response) => {setProducts(response.data);
+                            setLoading(false);
+      })
+      .catch((error) => console.error('Error fetching products:', error));
+  }, []);
+
+
+ 
+  const SellerProducts = products.filter(product => sellerId.includes(product.SellerID));
+ const totalproducts =SellerProducts.length
+
 
 
 
@@ -42,7 +63,7 @@ function SellerProfile() {
           <Col md={4} sm={4} xs={4}>
             <div className='text-center' >
               {product.sellerlogopath && (
-                <img src={product.sellerlogopath} alt={product.sellername} className='setimage1 rounded-circle border' />
+                <img src={product.sellerlogopath} alt={product.sellername} className='setimage1 rounded-circle border border-dark' />
               )}
               <h6 className="   text-primary textfont ">{product.sellershopname}</h6>
             </div>

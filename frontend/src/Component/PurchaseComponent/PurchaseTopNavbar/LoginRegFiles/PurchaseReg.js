@@ -33,76 +33,79 @@ function PurchaseReg() {
 
     const validate = async (e) => {
         e.preventDefault();
-
+    
         // Reset alert messages
         setNameAlert("");
         setPhoneAlert("");
         setPasswordAlert("");
         setCPasswordAlert("");
-
+    
+        // Validate input fields
+        if (Userdetails.username === "") {
+            setNameAlert("First name shouldn't be null");
+            return;
+        }
+        if (Userdetails.userphone === "") {
+            setPhoneAlert("Phone shouldn't be null");
+            return;
+        }
+        if (Userdetails.userpassword === "") {
+            setPasswordAlert("Password shouldn't be null");
+            return;
+        }
+        if (Userdetails.userpassword.length < 8) {
+            setPasswordAlert("Password should be at least 8 characters");
+            return;
+        }
+        if (Userdetails.usercpassword === "") {
+            setCPasswordAlert("Confirm password shouldn't be null");
+            return;
+        }
+        if (Userdetails.userpassword !== Userdetails.usercpassword) {
+            setCPasswordAlert("Password mismatch");
+            return;
+        }
+    
         try {
-            // Input validation
-            if (Userdetails.username === "") {
-                setNameAlert("First name shouldn't be null");
-                return;
-            }
-            if (Userdetails.userphone === "") {
-                setPhoneAlert("Phone shouldn't be null");
-                return;
-            }
-            if (Userdetails.userpassword === "") {
-                setPasswordAlert("Password shouldn't be null");
-                return;
-            }
-            if (Userdetails.userpassword.length < 8) {
-                setPasswordAlert("Password should be at least 8 characters");
-                return;
-            }
-            if (Userdetails.usercpassword === "") {
-                setCPasswordAlert("Confirm Password shouldn't be null");
-                return;
-            }
-            if (Userdetails.userpassword !== Userdetails.usercpassword) {
-                setCPasswordAlert("Password mismatch");
-                return;
-            }
-            setLoading(true)
-            // Axios post request
-            const result = await axios.post("https://ecommerce-5-74uc.onrender.com/reg", { ...Userdetails });
-
-            console.log(result); // Log the entire response for debugging
-
-            if (result.data.includes("user already registered")) {
-                // Display a message in the UI or handle as needed
+            setLoading(true);
+            // Make the Axios POST request
+            const response = await axios.post("http://localhost:3001/reg", Userdetails);
+            const { data } = response;
+    
+            if (data.message === "User already registered") {
                 alert("User already registered");
-                setLoading(false)
                 nav("../purchaselogin");
-               
-            } else if (result.data.includes("user registered successfully")) {
-                // Display a message in the UI or handle as needed
+            } else if (data.message === "User registered successfully") {
                 alert("Registered successfully");
-                setLoading(false)
                 nav("../purchaselogin");
             } else {
-                // Handle unexpected response format
-                setLoading(false)
                 alert("Unexpected server response");
             }
         } catch (error) {
-            // Log the error to the console for debugging
-            console.error("Error:", error);
-
-            // Display a generic error message to the user
-            // You may choose to provide more user-friendly messages
-            setLoading(false)
-            alert("An error occurred. Please try again later.");
+            setLoading(false);
+    
+            // Handle server error responses
+            if (error.response) {
+                const { status, data } = error.response;
+    
+                if (status === 400) {
+                    // Handle bad request errors
+                    alert("Bad Request: " + data.message);
+                } else {
+                    // Handle other server errors
+                    alert("Server error: " + data.message);
+                }
+            } else {
+                alert("Network error: Please check your connection.");
+            }
         }
     };
+    
+    
     return (
         <>
             <Backbutton/>
-            <div className="login-container mt-3
-         border border-dark shadow-sm p-1 mb-5 bg-white  ">
+            <div className="login-container mt-3 border border-dark shadow-sm p-1 mb-5 bg-white  ">
                 <div className="mt-5 mb-5">
                     <h2 className="text-primary text-center">Registration</h2>
 
