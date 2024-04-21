@@ -6,7 +6,7 @@ const UserModel = require('../Models/ProjectModel');
 router.put('/resetpassword', async (req, res) => {
     try {
         const { userphone, userpassword } = req.body;
-
+      
         // Hash the new password using bcrypt
         const saltRounds = 10; // Number of salt rounds for password hashing
         const hashedPassword = await bcrypt.hash(userpassword, saltRounds);

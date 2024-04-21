@@ -43,7 +43,7 @@ function LoadingComponent({ children }) {
   // Simulate loading time, set loading to false after 1.5 seconds
   setTimeout(() => {
     setLoading(false);
-  }, 500);
+  }, 300);
 
   return loading ? (
     <div className="loder-container ">

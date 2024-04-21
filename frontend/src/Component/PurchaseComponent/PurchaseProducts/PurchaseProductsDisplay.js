@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Row, Col } from 'react-bootstrap';
-import {jwtDecode} from 'jwt-decode'; // Import jwt-decode
-
 import "../PurchaseCssFiles/PurchaseProductDisplay.css";
 import BackButton from "../../OtherComponent/BackButton";
 
@@ -13,24 +11,15 @@ function PurchaseProductDisplay() {
     const [isButtonVisible, setIsButtonVisible] = useState(false);
     const productId = location.state.Mproduct ? location.state.Mproduct.productId : null;
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-
     const nav = useNavigate();
 
-    // Check if the user is authenticated using JWT token
-    const checkAuthentication = () => {
-        const token = sessionStorage.getItem('token');
-        if (token) {
-            try {
-                const decodedToken = jwtDecode(token);
-                const currentTime = Date.now() / 1000; // Current time in seconds
-                setIsAuthenticated(decodedToken.exp > currentTime);
-            } catch (error) {
-                setIsAuthenticated(false);
-            }
-        } else {
-            setIsAuthenticated(false);
-        }
-    };
+  
+   
+        const checkAuthentication = () => {
+            const token = sessionStorage.getItem('token');
+            setIsAuthenticated(!!token); // Convert token to boolean
+        };
+   
 
     useEffect(() => {
         checkAuthentication();
@@ -39,16 +28,13 @@ function PurchaseProductDisplay() {
             try {
                 const response = await axios.get('https://ecommerce-5-74uc.onrender.com/getcartproducts');
                 const cartItems = response.data;
-                
-                // Filter cart items based on user ID
-                const userId = sessionStorage.getItem('userId'); // Assuming you store the user ID in sessionStorage
+                const userId = sessionStorage.getItem('userId');
                 const cartProducts = userId ? cartItems.filter((cartItem) => cartItem.userId === userId) : [];
-                
-                // Check if the product is already in the cart
                 const isValuePresent = cartProducts.some(item => item.productId === productId);
                 setIsButtonVisible(isValuePresent);
             } catch (error) {
                 console.error('Error fetching products:', error);
+                // Handle error here
             }
         };
 
@@ -60,38 +46,35 @@ function PurchaseProductDisplay() {
     };
 
     const handleAddToCart = (product) => {
-      setLoading(true);
-      const userId = sessionStorage.getItem('userId');
-  
-      // Send a POST request with an object as the request body
-      axios
-          .post('https://ecommerce-5-74uc.onrender.com/addtocart', {
-              productId: product.productId,
-              productname: product.productname,
-              productimagePath: product.productimagePath,
-              productprice: product.productprice,
-              userId,
-              SellerID: product.SellerID,
-              productquantity: product.productquantity,
-              productdescription: product.productdescription,
-          })
-          .then((response) => {
-              // Check the response status code
-              if (response.status === 201) {
-                  alert("Item added successfully");
-                  setIsButtonVisible(true);
-              } else {
-                  alert('Failed to add item to cart');
-              }
-              setLoading(false);
-          })
-          .catch((error) => {
-              console.error('Error adding product:', error.message);
-              alert('An error occurred while adding the product to the cart.');
-              setLoading(false); // Reset loading state on error
-          });
-  };
-  
+        setLoading(true);
+        const userId = sessionStorage.getItem('userId');
+
+        axios
+            .post('https://ecommerce-5-74uc.onrender.com/addtocart', {
+                productId: product.productId,
+                productname: product.productname,
+                productimagePath: product.productimagePath,
+                productprice: product.productprice,
+                userId,
+                SellerID: product.SellerID,
+                productquantity: product.productquantity,
+                productdescription: product.productdescription,
+            })
+            .then((response) => {
+                if (response.status === 201) {
+                    alert("Item added successfully");
+                    setIsButtonVisible(true);
+                } else {
+                    alert('Failed to add item to cart');
+                }
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error('Error adding product:', error.message);
+                alert('An error occurred while adding the product to the cart.');
+                setLoading(false);
+            });
+    };
 
     return (
         <>
@@ -141,7 +124,6 @@ function PurchaseProductDisplay() {
                                     >
                                         Buy
                                     </button>
-                                    {/* Add "Add to cart" button if the user is authenticated and the product is not already in the cart */}
                                     {isAuthenticated && !isButtonVisible && !loading && (
                                         <button
                                             onClick={() => handleAddToCart(location.state.Mproduct)}
@@ -150,7 +132,6 @@ function PurchaseProductDisplay() {
                                             Add to cart
                                         </button>
                                     )}
-                                    {/* Display "Go to Cart" button if the product is already in the cart */}
                                     {isAuthenticated && isButtonVisible && (
                                         <button
                                             onClick={() => nav("/purchaseaddtocart")}
@@ -159,7 +140,6 @@ function PurchaseProductDisplay() {
                                             Go to Cart
                                         </button>
                                     )}
-                                    {/* Display loading indicator */}
                                     {loading && (
                                         <button className='custumbutton bg-secondary rounded'>
                                             Loading...

@@ -47,7 +47,6 @@ router.post('/forgot-password', async (req, res) => {
             to: `+91${phone}`,
           });
       
-          console.log('Twilio Response:', twilioResponse);
           res.status(201).json({ message: 'Password reset successful' });
         } catch (createError) {
           console.error('Error creating PasswordUpdate:', createError);
@@ -67,25 +66,27 @@ router.post('/forgot-password', async (req, res) => {
 
 
 
-router.post('/validateotp', (req, res) => {
-  const { phone, otp} = req.body;
+router.post('/validateotp', async (req, res) => {
+  const { phone, otp } = req.body;
 
-  PasswordUpdate.findOne({ phone: phone })
-      .then(user => {
-          if (user) {
-              if (user.otp === otp) {
-                  // Include userId in the response
-                  res.json({ status: "success", userId: user.userId });
-              } else {
-                  res.json({ status: "otp mismatch" });
-              }
-          } else {
-              res.json({ status: "userNotFound" });
-          }
-      })
-      .catch(err => res.json({ status: "error", error: err }));
+  try {
+    const user = await PasswordUpdate.findOne({ phone: phone });
+
+    if (user) {
+      if (user.otp === otp) {
+        // Include userId in the response
+        res.json({ status: "success", userId: user.userId });
+      } else {
+        res.json({ status: "otpMismatch" });
+      }
+    } else {
+      res.json({ status: "userNotFound" });
+    }
+  } catch (error) {
+    console.error('Error validating OTP:', error);
+    res.status(500).json({ status: "error", message: "Server error" });
+  }
 });
-
 
 
 module.exports = router;

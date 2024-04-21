@@ -72,7 +72,7 @@ function SellerLogin() {
             const token = response.data.token; // Get the token from the response
             sessionStorage.setItem("sellerId", JSON.stringify(response.data.sellerId));
             sessionStorage.setItem("sellerphone", value.sellerphone);
-            sessionStorage.setItem("sellertoken", token); // Store the token in session storage
+            sessionStorage.setItem("sellertoken", JSON.stringify(token)); // Store the token in session storage
             
             // Display a success alert
             alert("Logged in successfully");

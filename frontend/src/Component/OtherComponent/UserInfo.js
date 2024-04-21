@@ -57,7 +57,7 @@ function UserInfo() {
         <>
         <BackButton/>
         <div className="container-fluid mt-3 border  shadow-sm p-1 mb-5 bg-white ">
-            <h2 className="mb-4 text-center text-primary">All Users</h2>
+            <h2 className="mb-4 text-center text-primary">All Buyers</h2>
 
             <h4><strong className='me-2'>Total users :</strong>  {users.length}</h4>
             <div className='row p-3 '>
