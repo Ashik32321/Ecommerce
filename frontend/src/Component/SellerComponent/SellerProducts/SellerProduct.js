@@ -16,7 +16,7 @@ const SellerProduct= () => {
 
 
   useEffect(() => {
-    axios.get('http://localhost:3001/getproducts')
+    axios.get('https://ecommerce-5-74uc.onrender.com/getproducts')
       .then((response) => {setProducts(response.data);
                             setLoading(false);
       })

@@ -98,7 +98,7 @@ function PurchaseDeliveryAddress() {
     setLoading(true)
 
     axios
-      .post('http://localhost:3001/saveaddress', { ...Address })
+      .post('https://ecommerce-5-74uc.onrender.com/saveaddress', { ...Address })
       .then(() => {
         alert("address added successfully")
         setLoading(false)

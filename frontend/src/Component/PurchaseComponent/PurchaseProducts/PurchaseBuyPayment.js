@@ -21,7 +21,7 @@ const PurchaseBuyPayment = () => {
 
   const [Deliveryaddress, setDeliveryaddress] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:3001/getdeliveryaddress')
+    axios.get('https://ecommerce-5-74uc.onrender.com/getdeliveryaddress')
       .then(response => {setDeliveryaddress(response.data)
         setLoading(false);})
       .catch(error => console.error(error));
@@ -58,7 +58,7 @@ const PurchaseBuyPayment = () => {
     } else if (paymentOption === 'COD') {
       try {
         // Example using fetch
-        const response = await fetch('http://localhost:3001/orders', {
+        const response = await fetch('https://ecommerce-5-74uc.onrender.com/orders', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ const PurchaseBuyPayment = () => {
         const headers = {
           "Content-Type": "application/json"
         };
-        const response = await fetch("http://localhost:3001/checkout", {
+        const response = await fetch("https://ecommerce-5-74uc.onrender.com/checkout", {
           method: "POST",
           headers: headers,
           body: JSON.stringify(body)
@@ -103,7 +103,7 @@ const PurchaseBuyPayment = () => {
           console.error('Stripe Error:', result.error);
         } else {
           // Payment successful with Stripe, proceed to handle order
-          const orderResponse = await fetch('http://localhost:3001/orders', {
+          const orderResponse = await fetch('https://ecommerce-5-74uc.onrender.com/orders', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

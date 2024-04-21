@@ -14,7 +14,7 @@ function GentsCategory() {
 
     useEffect(() => {
         // Fetch mens products from the server
-        axios.get('http://localhost:3001/getmensproducts')
+        axios.get('https://ecommerce-5-74uc.onrender.com/getmensproducts')
             .then(response => {
                 setMensProducts(response.data);
                 setLoading(false); // Set loading to false when data is fetched

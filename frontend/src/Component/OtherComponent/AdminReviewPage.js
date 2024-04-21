@@ -26,7 +26,7 @@ const AdminReviewPage = () => {
     };
 
     axios
-      .get('http://localhost:3001/getorderproducts')
+      .get('https://ecommerce-5-74uc.onrender.com/getorderproducts')
       .then((response) => {
         const filteredOrders = response.data.filter(order => order.delivered === true);
         setOrders(filteredOrders);

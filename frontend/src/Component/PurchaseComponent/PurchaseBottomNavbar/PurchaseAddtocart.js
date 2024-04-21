@@ -14,7 +14,7 @@ const PurchaseAddtocart = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001/getcartproducts')
+      .get('https://ecommerce-5-74uc.onrender.com/getcartproducts')
       .then((response) =>{ setCartItems(response.data);
                             setLoading(false);})
       .catch((error) => console.error('Error fetching products:', error));
@@ -53,7 +53,7 @@ const PurchaseAddtocart = () => {
 
   const handleDelete = async (_id) => {
     try {
-      await axios.delete(`http://localhost:3001/remove/${_id}`);
+      await axios.delete(`https://ecommerce-5-74uc.onrender.com/remove/${_id}`);
       alert('Item deleted successfully');
       window.location.reload();
     } catch (error) {

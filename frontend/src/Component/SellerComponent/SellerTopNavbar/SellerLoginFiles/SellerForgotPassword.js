@@ -33,7 +33,7 @@ function SellerForgotPassword() {
         }
 
         try {
-            const response = await axios.post('http://localhost:3001/sellerforgot-password', { phone: formData.phone });
+            const response = await axios.post('https://ecommerce-5-74uc.onrender.com/sellerforgot-password', { phone: formData.phone });
             if (response.status === 201) {
                 alert('OTP has been sent to your mobile phone');
             } else if (response.status === 400) {
@@ -56,7 +56,7 @@ function SellerForgotPassword() {
         setLoading(true);
 
         try {
-            const response = await axios.post('http://localhost:3001/sellervalidateotp', formData);
+            const response = await axios.post('https://ecommerce-5-74uc.onrender.com/sellervalidateotp', formData);
             if (response.data.status === 'success') {
                 navigate('/sellerresetpassword');
             } else if (response.data.status === 'otp mismatch') {

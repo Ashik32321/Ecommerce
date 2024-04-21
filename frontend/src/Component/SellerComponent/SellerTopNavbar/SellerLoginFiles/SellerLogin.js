@@ -64,7 +64,7 @@ function SellerLogin() {
         setLoading(true);
         
         // Send the login request to the backend
-        const response = await axios.post("http://localhost:3001/sellerlogin", requestBody);
+        const response = await axios.post("https://ecommerce-5-74uc.onrender.com/sellerlogin", requestBody);
 
         // Check the status of the response
         if (response.data.status === "success") {

@@ -37,7 +37,7 @@ function PurchaseProductDisplay() {
 
         const fetchCartItems = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/getcartproducts');
+                const response = await axios.get('https://ecommerce-5-74uc.onrender.com/getcartproducts');
                 const cartItems = response.data;
                 
                 // Filter cart items based on user ID
@@ -65,7 +65,7 @@ function PurchaseProductDisplay() {
   
       // Send a POST request with an object as the request body
       axios
-          .post('http://localhost:3001/addtocart', {
+          .post('https://ecommerce-5-74uc.onrender.com/addtocart', {
               productId: product.productId,
               productname: product.productname,
               productimagePath: product.productimagePath,

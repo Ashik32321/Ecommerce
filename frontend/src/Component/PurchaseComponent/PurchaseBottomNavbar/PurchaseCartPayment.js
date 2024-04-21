@@ -34,7 +34,7 @@ const storedDataArray = JSON.parse(storedDataArrayString);
            
        
   useEffect(() => {
-    axios.get('http://localhost:3001/getdeliveryaddress')
+    axios.get('https://ecommerce-5-74uc.onrender.com/getdeliveryaddress')
        .then(response => {
           setDeliveryaddress(response.data);
           setLoading(false);
@@ -72,7 +72,7 @@ console.log(phone1)
    }
    else if (paymentOption === 'Cod') {
    // Example using fetch
-fetch('http://localhost:3001/orders', {
+fetch('https://ecommerce-5-74uc.onrender.com/orders', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -97,7 +97,7 @@ fetch('http://localhost:3001/orders', {
           const headers = {
              "Content-Type": "application/json"
           }
-          const response = await fetch("http://localhost:3001/checkout", {
+          const response = await fetch("https://ecommerce-5-74uc.onrender.com/checkout", {
              method: "POST",
              headers: headers,
              body: JSON.stringify(body)
@@ -108,7 +108,7 @@ fetch('http://localhost:3001/orders', {
           });
 
 
-          fetch('http://localhost:3001/orders', {
+          fetch('https://ecommerce-5-74uc.onrender.com/orders', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',

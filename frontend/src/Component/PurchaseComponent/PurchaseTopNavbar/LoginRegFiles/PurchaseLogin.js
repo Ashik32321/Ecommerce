@@ -31,7 +31,7 @@ function PurchaseLogin() {
         setLoading(true);
     
         try {
-            const response = await axios.post("http://localhost:3001/login",Userdetails);
+            const response = await axios.post("https://ecommerce-5-74uc.onrender.com/login",Userdetails);
             
             if (response.data.status === 'success') {
                 // Store the JWT token in local storage

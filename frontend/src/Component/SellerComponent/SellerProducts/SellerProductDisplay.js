@@ -17,7 +17,7 @@ function SellerProductDisplay() {
 
     const removeproduct = async(_id)=>{
       try {
-        await axios.delete(`http://localhost:3001/removesellerproduct/${_id}`);
+        await axios.delete(`https://ecommerce-5-74uc.onrender.com/removesellerproduct/${_id}`);
         alert('Product deleted successfully');
        nav("/sellerhome")
         
@@ -32,7 +32,7 @@ function SellerProductDisplay() {
 
       const changestockvalue = async (_id) => {
         try {
-          await axios.put(`http://localhost:3001/updateProductValue/${_id}`);
+          await axios.put(`https://ecommerce-5-74uc.onrender.com/updateProductValue/${_id}`);
           alert('Marked Outofstock');
           nav("/sellerhome")
      
@@ -42,7 +42,7 @@ function SellerProductDisplay() {
       };
       const rechangestockvalue = async (_id) => {
         try {
-          await axios.put(`http://localhost:3001/reupdateProductValue/${_id}`);
+          await axios.put(`https://ecommerce-5-74uc.onrender.com/reupdateProductValue/${_id}`);
          alert('Stocked Successfully');
          nav("/sellerhome")
          

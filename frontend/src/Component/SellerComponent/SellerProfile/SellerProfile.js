@@ -16,7 +16,7 @@ function SellerProfile() {
 
   useEffect(() => {
     // Fetch all products from the server on component mount
-    axios.get('http://localhost:3001/getsellerprofile')
+    axios.get('https://ecommerce-5-74uc.onrender.com/getsellerprofile')
       .then((response) => {
         setProfile(response.data)
         setLoading(false)
@@ -35,7 +35,7 @@ function SellerProfile() {
 
 
   useEffect(() => {
-    axios.get('http://localhost:3001/getproducts')
+    axios.get('https://ecommerce-5-74uc.onrender.com/getproducts')
       .then((response) => {setProducts(response.data);
                             setLoading(false);
       })

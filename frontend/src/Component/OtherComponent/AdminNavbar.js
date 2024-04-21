@@ -13,7 +13,7 @@ function AdminNavbar() {
         const token = sessionStorage.getItem('adminToken'); 
 
         try {
-            await axios.post('http://localhost:3001/adminlogout', {}, {
+            await axios.post('https://ecommerce-5-74uc.onrender.com/adminlogout', {}, {
                 headers: {
                     Authorization: `Bearer ${token}` // Include the token in the request headers
                 }

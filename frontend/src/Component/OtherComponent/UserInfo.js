@@ -11,7 +11,7 @@ function UserInfo() {
 
     useEffect(() => {
         // Fetch all users from the server on component mount
-        axios.get('http://localhost:3001/getuser')
+        axios.get('https://ecommerce-5-74uc.onrender.com/getuser')
             .then((response) => {
                 setUsers(response.data);
                 setLoading(false);

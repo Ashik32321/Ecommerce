@@ -14,7 +14,7 @@ function MobileCategory() {
 
     useEffect(() => {
         // Fetch mobile products from the server
-        axios.get('http://localhost:3001/getmobileproducts')
+        axios.get('https://ecommerce-5-74uc.onrender.com/getmobileproducts')
             .then(response => {
                 setMobileProducts(response.data);
                 setLoading(false); // Set loading to false when data is fetched
