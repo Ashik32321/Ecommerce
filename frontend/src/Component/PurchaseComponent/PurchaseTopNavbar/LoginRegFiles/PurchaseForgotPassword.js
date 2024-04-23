@@ -43,7 +43,7 @@ function PurchaseForgotPassword() {
     } else {
       try {
         // Make an HTTP request to the server
-        const response = await axios.post('http://localhost:3001/forgot-password', { phone: value.phone });
+        const response = await axios.post('https://ecommerce-5-74uc.onrender.com/forgot-password', { phone: value.phone });
 
         if (response.status === 201) {
           setOtpSent(true);
@@ -69,7 +69,7 @@ function PurchaseForgotPassword() {
     setLoading(true);
 
     try {
-      const result = await axios.post("http://localhost:3001/validateotp", {phone: value.phone , otp });
+      const result = await axios.post("https://ecommerce-5-74uc.onrender.com/validateotp", {phone: value.phone , otp });
       console.log(result);
 
       if (result.data.status === "success") {

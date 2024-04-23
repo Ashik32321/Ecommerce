@@ -6,7 +6,6 @@ const Product = require('../Models/ProductModel');
 
 router.get('/search', async (req, res) => {
   const query = req.query.q;
-  console.log(req.query.q);
 
   try {
     const items = await Product.find({ productname: { $regex: new RegExp(query, 'i') } });
