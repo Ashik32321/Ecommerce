@@ -72,7 +72,7 @@ function SellerForgotPassword() {
 
       if (result.data.status === "success") {
         setLoading(false);
-        sessionStorage.setItem("resetphone",value.phone )
+        sessionStorage.setItem("sellerresetphone",value.phone )
         navigate("/sellerresetpassword");
       } else if (result.data.status === "otp mismatch") {
         setLoading(false);

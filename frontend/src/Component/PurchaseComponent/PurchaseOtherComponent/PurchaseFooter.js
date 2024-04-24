@@ -7,7 +7,7 @@ function PurchaseFooter() {
   return (
     <Container fluid className="bg-white footer-custom  fw-bold " >
       <Row className="justify-content-center text-center py-5">
-        <Col md={3} sm={6} xs={12} className="mb-4">
+        <Col md={3} sm={6} xs={12} className="mb-3">
           <h5><u>About</u></h5>
           <Link to="/contactpage" className="text-decoration-none ">Contact us</Link><br/>
           <Link to="/AdminLogin" className="text-decoration-none ">Admin Login</Link>
