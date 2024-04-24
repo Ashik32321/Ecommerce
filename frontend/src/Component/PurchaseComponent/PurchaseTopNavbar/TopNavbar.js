@@ -24,7 +24,7 @@ function TopNavbar() {
         e.preventDefault();
 
         try {
-            const response = await axios.get(`https://ecommerce-5-74uc.onrender.com/search?q=${searchQuery}`);
+            const response = await axios.get(`http://localhost:3001/search?q=${searchQuery}`);
 
             const items = response.data;
             const dataArrayString = JSON.stringify(items);

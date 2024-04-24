@@ -11,7 +11,7 @@ function UserInfo() {
 
     useEffect(() => {
         // Fetch all users from the server on component mount
-        axios.get('https://ecommerce-5-74uc.onrender.com/getuser')
+        axios.get('http://localhost:3001/getuser')
             .then((response) => {
                 setUsers(response.data);
                 setLoading(false);
@@ -19,7 +19,7 @@ function UserInfo() {
             .catch((error) => console.error('Error fetching sellers:', error));
 
 
-            axios.get('https://ecommerce-5-74uc.onrender.com/getorderproducts')
+            axios.get('http://localhost:3001/getorderproducts')
       .then((response) => {settotalorders(response.data);
                            setLoading(false);})
       .catch((error) => console.error('Error fetching orders:', error));

@@ -14,7 +14,7 @@ function ElectronicCategory() {
 
     useEffect(() => {
         // Fetch mobile products from the server
-        axios.get('https://ecommerce-5-74uc.onrender.com/getelectronicproducts')
+        axios.get('http://localhost:3001/getelectronicproducts')
             .then(response => {
                 setElectronicProducts(response.data);
                 setLoading(false); // Set loading to false when data is fetched

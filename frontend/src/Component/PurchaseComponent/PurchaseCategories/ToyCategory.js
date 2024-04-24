@@ -14,7 +14,7 @@ function ToyCategory() {
 
     useEffect(() => {
         // Fetch toy products from the server
-        axios.get('https://ecommerce-5-74uc.onrender.com/gettoyproducts')
+        axios.get('http://localhost:3001/gettoyproducts')
             .then(response => {
                 setToyProducts(response.data);
                 setLoading(false); // Set loading to false when data is fetched

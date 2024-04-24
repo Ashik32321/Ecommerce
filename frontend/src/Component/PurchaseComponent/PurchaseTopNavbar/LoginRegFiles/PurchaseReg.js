@@ -69,7 +69,7 @@ function PurchaseReg() {
         try {
             setLoading(true);
             // Make the Axios POST request
-            const response = await axios.post("https://ecommerce-5-74uc.onrender.com/reg", Userdetails);
+            const response = await axios.post("http://localhost:3001/reg", Userdetails);
             const { data } = response;
     
             if (data.message === "User already registered") {

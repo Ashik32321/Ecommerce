@@ -26,7 +26,7 @@ function PurchaseProductDisplay() {
 
         const fetchCartItems = async () => {
             try {
-                const response = await axios.get('https://ecommerce-5-74uc.onrender.com/getcartproducts');
+                const response = await axios.get('http://localhost:3001/getcartproducts');
                 const cartItems = response.data;
                 const userId = sessionStorage.getItem('userId');
                 const cartProducts = userId ? cartItems.filter((cartItem) => cartItem.userId === userId) : [];
@@ -50,7 +50,7 @@ function PurchaseProductDisplay() {
         const userId = sessionStorage.getItem('userId');
 
         axios
-            .post('https://ecommerce-5-74uc.onrender.com/addtocart', {
+            .post('http://localhost:3001/addtocart', {
                 productId: product.productId,
                 productname: product.productname,
                 productimagePath: product.productimagePath,

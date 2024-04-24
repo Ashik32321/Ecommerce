@@ -97,7 +97,7 @@ function PurchaseEditAddress() {
     setLoading(true);
 
     try {
-      await axios.put(`https://ecommerce-5-74uc.onrender.com/editaddress/${userId}`, Address);
+      await axios.put(`http://localhost:3001/editaddress/${userId}`, Address);
       setLoading(false);
       alert('Address updated successfully');
       nav(-1);

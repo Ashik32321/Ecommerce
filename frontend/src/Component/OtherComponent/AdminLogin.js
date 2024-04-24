@@ -30,7 +30,7 @@ function AdminLogin() {
     
         try {
             // Make a request to the admin login endpoint
-            const result = await axios.post("https://ecommerce-5-74uc.onrender.com/adminlogin", Admindetails);
+            const result = await axios.post("http://localhost:3001/adminlogin", Admindetails);
     
             if (result.data.status === "success") {
                 // Retrieve the JWT token from the response

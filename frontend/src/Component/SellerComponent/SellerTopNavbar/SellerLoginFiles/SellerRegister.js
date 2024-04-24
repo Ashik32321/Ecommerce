@@ -63,7 +63,7 @@ const [value,setvalue]=useState({
     sessionStorage.setItem('selleraddressId', sellerDetails.sellerId);
 
     try {
-        const result = await axios.post('https://ecommerce-5-74uc.onrender.com/sellerregister', formData, {
+        const result = await axios.post('http://localhost:3001/sellerregister', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
