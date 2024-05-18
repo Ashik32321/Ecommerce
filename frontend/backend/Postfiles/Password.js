@@ -35,7 +35,7 @@ router.post('/forgot-password', async (req, res) => {
           to: `+91${phone}`,
         });
         
-        console.log('Twilio Response:', twilioResponse);
+      
         res.status(201).json({ message: 'Password reset successful' });
       } else {
         // Use await and handle errors for the create operation
